@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="description" content="A simple notes application">
+        <title>Notes Application</title>
+        <link rel="stylesheet" href="styles/common-styles.css" type="text/css">
+        <link rel="stylesheet" href="styles/index-styles.css" type="text/css">
+        <script src="http://builds.handlebarsjs.com.s3.amazonaws.com/handlebars-v4.0.5.js"></script>
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <script src="scripts/index.js"></script>
+    </head>
+    <body>
+        <header>
+            <h1>Notes Application</h1>
+            <div id="toolbarcontainer">
+                <div id="toolbuttons">
+                    <button><img src="images/new.png">New</button>
+                </div>
+                <div id="sortoptions">
+                    <label>Sort by:</label>
+                    <label><input type="radio" name="sortorder" value="sortByFinishDate" onclick="reloadNotes();" checked>Finish date</label>
+                    <label><input type="radio" name="sortorder" value="sortByCreatedDate" onclick="reloadNotes();">Created date</label>
+                    <label><input type="radio" name="sortorder" value="sortByImportance" onclick="reloadNotes();">Importance</label>
+                </div>
+                <div id="filteroptions">
+                    <label><input type="checkbox" id="filtershowfinished" onclick="reloadNotes();" checked>Show finished</label>
+                </div>
+                <div id="themestyles">
+                    <label>Style:
+                        <select>
+                            <option>Bright Theme</option>
+                            <option>Dark Theme</option>
+                        </select>
+                    </label>
+                </div>
+            </div>
+        </header>
+        <main>
+            <section id="notecontent"></section>
+            <script id="notetemplate" type="text/x-handlebars-template">
+                {{#notes}}
+                <article class="notecontainer">
+                    <div class="notecolumnleft">
+                        <div class="noteduedate">{{dueDate}}</div>
+                        <div>
+                            {{#if finishDate}}
+                            <label><input type="checkbox" onclick="finishNote({{id}}, true);" checked>Finished ({{finishDate}})</label>
+                            {{else}}
+                            <label><input type="checkbox" onclick="finishNote({{id}}, false);">Finished</label>
+                            {{/if}}
+                        </div>
+                    </div>
+                    <div class="notecolumnmiddle">
+                        <details>
+                            <summary class="notesummary">
+                                {{title}} {{{importanceHelper importance}}}
+                            </summary>
+                            <p>{{description}}</p>
+                        </details>
+                    </div>
+                    <div class="notecolumnright">
+                        <button onclick="editNote({{id}});"><img src="images/edit.png">Edit</button>
+                        <button onclick="deleteNote({{id}});"><img src="images/delete.png">Delete</button>
+                    </div>
+                </article>
+                {{/notes}}
+            </script>
+        </main>
+        <footer>
+            <a href="https://www.hsr.ch"><img src="images/hsr.jpg"></a>
+        </footer>
+        <script>reloadNotes();</script>
+    </body>
+</html>

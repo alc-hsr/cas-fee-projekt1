@@ -1,0 +1,57 @@
+/* Static part of the index page (title, toolbar for buttons and options) */
+#toolbarcontainer {
+    display: flex;
+    flex-direction: row;
+}
+#toolbuttons {
+    flex: 1;
+    text-align: left;
+}
+#sortoptions {
+    flex: 3;
+}
+#filteroptions {
+    flex: 1;
+}
+#themestyles {
+    flex: 1;
+    text-align: right;
+}
+
+/* Dynamic part for the notes */
+.notecontainer {
+    display: flex;
+    flex-direction: row;
+}
+article {
+    border-bottom: 1px dashed black;
+    border-left: 2px solid black;
+    border-right: 2px solid black;
+    padding: 10px;
+}
+article:last-child {
+    border-bottom: none;
+}
+article:hover {
+    background-color: lightgrey;
+}
+.notecolumnleft {
+    flex: 0 0 200px;
+}
+.notecolumnmiddle {
+    flex: 6;
+}
+.notecolumnright {
+    flex: 0 0 120px;
+    text-align: right;
+}
+.noteduedate {
+    font-weight: bold;
+}
+.notesummary {
+    font-weight: bold;
+    cursor: pointer;
+}
+p {
+    font-style: italic;
+}
