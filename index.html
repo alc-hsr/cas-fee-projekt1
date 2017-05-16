@@ -11,22 +11,24 @@
         <script src="scripts/index.js"></script>
     </head>
     <body>
-        <header>
-            <h1>Notes Application</h1>
+        <header id="indexpageheader">
+            <div id="indexpagetitle">
+                <h1>Notes Application</h1>
+            </div>
             <div id="toolbarcontainer">
-                <div id="toolbuttons">
-                    <button><img src="images/new.png">New</button>
+                <div>
+                    <button id="newbutton"><img src="images/new.png">New</button>
                 </div>
-                <div id="sortoptions">
+                <div>
                     <label>Sort by:</label>
                     <label><input type="radio" name="sortorder" value="sortByFinishDate" onclick="reloadNotes();" checked>Finish date</label>
                     <label><input type="radio" name="sortorder" value="sortByCreatedDate" onclick="reloadNotes();">Created date</label>
                     <label><input type="radio" name="sortorder" value="sortByImportance" onclick="reloadNotes();">Importance</label>
                 </div>
-                <div id="filteroptions">
+                <div>
                     <label><input type="checkbox" id="filtershowfinished" onclick="reloadNotes();" checked>Show finished</label>
                 </div>
-                <div id="themestyles">
+                <div>
                     <label>Style:
                         <select>
                             <option>Bright Theme</option>

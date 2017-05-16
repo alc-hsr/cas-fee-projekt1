@@ -1,21 +1,24 @@
 /* Static part of the index page (title, toolbar for buttons and options) */
+#indexpageheader {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+#indexpagetitle {
+    display: flex;
+    justify-content: center;
+}
 #toolbarcontainer {
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    border-top: 2px solid black;
+    padding: 10px;
 }
-#toolbuttons {
-    flex: 1;
-    text-align: left;
-}
-#sortoptions {
-    flex: 3;
-}
-#filteroptions {
-    flex: 1;
-}
-#themestyles {
-    flex: 1;
-    text-align: right;
+#newbutton {
+    flex-direction: row;
 }
 
 /* Dynamic part for the notes */
@@ -33,7 +36,7 @@ article:last-child {
     border-bottom: none;
 }
 article:hover {
-    background-color: lightgrey;
+    background-color: aliceblue;
 }
 .notecolumnleft {
     flex: 0 0 200px;

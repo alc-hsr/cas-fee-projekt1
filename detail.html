@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Note Detail</title>
+        <link rel="stylesheet" href="styles/common-styles.css" type="text/css">
+        <link rel="stylesheet" href="styles/detail-styles.css" type="text/css">
+    </head>
+    <body>
+        <header id="detailpagetitle">
+            <h1>Note Detail</h1>
+        </header>
+        <main>
+            <form>
+                <div class="labelvaluepair">
+                    <label class="labelitem" for="title">Title:</label>
+                    <input class="valueitem" type="text" id="title">
+                </div>
+                <div class="labelvaluepair">
+                    <label class="labelitem" for="description">Description:</label>
+                    <textarea class="valueitem" id="description"></textarea>
+                </div>
+                <div class="labelvaluepair">
+                    <label class="labelitem">Importance:</label>
+                    <div class="valueitem" id="importanceitem">
+                        <img src="images/important.png"><img src="images/important.png"><img src="images/important.png"><img src="images/important.png">
+                    </div>
+                </div>
+                <div class="labelvaluepair">
+                    <label class="labelitem" for="duedate">Due Date:</label>
+                    <div class="valueitem" id="duedateitem">
+                        <input type="date" id="duedate">
+                    </div>
+                </div>
+                <div class="labelvaluepair">
+                    <label class="labelitem">Created Date:</label>
+                    <time class="valueitem" id="createddate">DD.MM.YYYY</time>
+                </div>
+                <div class="labelvaluepair">
+                    <label class="labelitem">Finished Date:</label>
+                    <time class="valueitem" id="finisheddate">DD.MM.YYYY</time>
+                </div>
+            </form>
+            <div id="detailbuttonbar">
+                <button id="savedetail"><img src="images/save.png">Save</button>
+                <button id="canceldetail"><img src="images/cancel.png">Cancel</button>
+            </div>
+        </main>
+        <footer>
+            <a href="https://www.hsr.ch"><img src="images/hsr.jpg"></a>
+        </footer>
+    </body>
+</html>
