@@ -5,6 +5,10 @@
         <title>Note Detail</title>
         <link rel="stylesheet" href="styles/common-styles.css" type="text/css">
         <link rel="stylesheet" href="styles/detail-styles.css" type="text/css">
+        <script src="http://builds.handlebarsjs.com.s3.amazonaws.com/handlebars-v4.0.5.js"></script>
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+        <script src="scripts/helpers.js"></script>
+        <script src="scripts/detail.js"></script>
     </head>
     <body>
         <header id="detailpagetitle">
@@ -21,9 +25,13 @@
                     <textarea class="valueitem" id="description"></textarea>
                 </div>
                 <div class="labelvaluepair">
-                    <label class="labelitem">Importance:</label>
-                    <div class="valueitem" id="importanceitem">
-                        <img src="images/important.png"><img src="images/important.png"><img src="images/important.png"><img src="images/important.png">
+                    <label class="labelitem" for="importanceitem">Importance:</label>
+                    <div class="valueitem">
+                        <section id="importanceitemimages"></section>
+                        <script id="importanceitemimagestemplate" type="text/x-handlebars-template">
+                            {{{importanceHelper importance true}}}
+                        </script>
+                        <input id="importanceitem" type="range" min="0" max="5" value=0 onchange="onImportanceAdjusted();">
                     </div>
                 </div>
                 <div class="labelvaluepair">
@@ -49,5 +57,6 @@
         <footer>
             <a href="https://www.hsr.ch"><img src="images/hsr.jpg"></a>
         </footer>
+        <script>onImportanceAdjusted();</script>
     </body>
 </html>

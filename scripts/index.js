@@ -62,11 +62,3 @@ function getSampleData() {
         ]
     };
 }
-
-Handlebars.registerHelper('importanceHelper', function(importance) {
-    var result = '';
-    for (var i = 0; i < importance; i++) {
-        result += '<img src="images/important.png">';
-    }
-    return result;
-});
