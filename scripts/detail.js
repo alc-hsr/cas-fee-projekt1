@@ -1,4 +1,6 @@
+'use strict';
+
 function onImportanceAdjusted() {
-    var template = Handlebars.compile(document.getElementById("importanceitemimagestemplate").innerHTML);
+    let template = Handlebars.compile(document.getElementById("importanceitemimagestemplate").innerHTML);
     document.getElementById("importanceitemimages").innerHTML =  template({importance : $("#importanceitem").val()});
 }

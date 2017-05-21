@@ -21,6 +21,9 @@ form {
 .valueitem {
     flex: 4;
 }
+#description {
+    min-height: 100px;
+}
 
 #detailbuttonbar {
     display: flex;

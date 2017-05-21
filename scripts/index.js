@@ -1,3 +1,5 @@
+'use strict';
+
 function finishNote(id, isAlreadyFinished) {
     if (isAlreadyFinished) {
         console.log('TODO: Unfinish note with ID: ' + id);
@@ -17,21 +19,21 @@ function deleteNote(id) {
 }
 
 function reloadNotes() {
-    var showFinished = $("#filtershowfinished").is(":checked");
-    var sortOrder = $("input[name=sortorder]:checked").val();
+    let showFinished = $("#filtershowfinished").is(":checked");
+    let sortOrder = $("input[name=sortorder]:checked").val();
     loadNotes(showFinished, sortOrder);
 }
 
 function loadNotes(showFinished, sortOrder) {
-    var originalData = getSampleData();
-    var filteredData = filterNotes(originalData, showFinished);
-    var sortedData = sortNotes(filteredData, sortOrder);
-    var template = Handlebars.compile(document.getElementById("notetemplate").innerHTML);
+    let originalData = getSampleData();
+    let filteredData = filterNotes(originalData, showFinished);
+    let sortedData = sortNotes(filteredData, sortOrder);
+    let template = Handlebars.compile(document.getElementById("notetemplate").innerHTML);
     document.getElementById("notecontent").innerHTML =  template(sortedData);
 }
 
 function filterNotes(originalData, showFinished) {
-    var filteredNotes = originalData.notes.filter(function(note) {
+    let filteredNotes = originalData.notes.filter(function(note) {
         return showFinished || !note.finishDate;
     });
     return {

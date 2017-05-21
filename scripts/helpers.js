@@ -1,7 +1,9 @@
+'use strict';
+
 Handlebars.registerHelper('importanceHelper', function(importance, showDeselected) {
-    var result = '';
-    var index = 0;
-    var maxImportance = 5;
+    let result = '';
+    let index = 0;
+    let maxImportance = 5;
     for (; index < importance; index++) {
         result += '<img src="images/important.png">';
     }
