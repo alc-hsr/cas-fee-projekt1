@@ -1,5 +1,10 @@
+'use strict';
+
 function activateStyle(style) {
     document.getElementById('activestyle').href = style;
+}
+
+function setActiveStyle(style) {
     localStorage.setItem('activeStyle', style);
 }
 

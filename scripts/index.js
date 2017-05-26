@@ -1,17 +1,45 @@
 'use strict';
 
 (function() {
+    // Init style
     let switcher = document.getElementById("styleswitcher");
-
     let activeStyle = getActiveStyle();
     $("#styleswitcher").val(activeStyle);
     activateStyle(activeStyle);
+    switcher.addEventListener('change', onStyleChanged);
 
-    switcher.addEventListener('change', function() {
-        let selectedStyle = $("#styleswitcher").val();
-        activateStyle(selectedStyle);
-    });
+    // Init sort options
+    document.getElementById('sortByDueDate').addEventListener('click', onSortOrderChanged);
+    document.getElementById('sortByCreationDate').addEventListener('click', onSortOrderChanged);
+    document.getElementById('sortByImportance').addEventListener('click', onSortOrderChanged);
+    let activeSortOrder = getActiveSortOrder();
+    $('#' + activeSortOrder).prop('checked', true);
+
+    // Init filter
+    document.getElementById('filtershowfinished').addEventListener('click', onShowFinishedFilterClicked);
+    let showFinished = isShowFinishedEnabled();
+    $('#filtershowfinished').prop('checked', showFinished);
+
+    reloadNotes();
 })();
+
+function onStyleChanged() {
+    let selectedStyle = $("#styleswitcher").val();
+    activateStyle(selectedStyle);
+    setActiveStyle(selectedStyle);
+}
+
+function onSortOrderChanged() {
+    let sortOrder = $("input[name=sortorder]:checked").val();
+    setActiveSortOrder(sortOrder);
+    reloadNotes();
+}
+
+function onShowFinishedFilterClicked() {
+    let isShowFinishedEnabled = $("#filtershowfinished").is(":checked");
+    setShowFinished(isShowFinishedEnabled);
+    reloadNotes();
+}
 
 function createNewNote() {
     location.href = 'detail.html';
@@ -53,8 +81,8 @@ function deleteNote(noteId) {
 }
 
 function reloadNotes() {
-    let showFinished = $("#filtershowfinished").is(":checked");
-    let sortOrder = $("input[name=sortorder]:checked").val();
+    let showFinished = isShowFinishedEnabled();
+    let sortOrder = getActiveSortOrder();
     loadNotes(showFinished, sortOrder);
 }
 

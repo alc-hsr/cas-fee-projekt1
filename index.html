@@ -20,12 +20,12 @@
                 </div>
                 <div>
                     <label>Sort by:</label>
-                    <label><input type="radio" name="sortorder" value="sortByDueDate" onclick="reloadNotes();" checked>Due date</label>
-                    <label><input type="radio" name="sortorder" value="sortByCreationDate" onclick="reloadNotes();">Creation date</label>
-                    <label><input type="radio" name="sortorder" value="sortByImportance" onclick="reloadNotes();">Importance</label>
+                    <label><input type="radio" id="sortByDueDate" name="sortorder" value="sortByDueDate">Due date</label>
+                    <label><input type="radio" id="sortByCreationDate" name="sortorder" value="sortByCreationDate">Creation date</label>
+                    <label><input type="radio" id="sortByImportance" name="sortorder" value="sortByImportance">Importance</label>
                 </div>
                 <div>
-                    <label><input type="checkbox" id="filtershowfinished" onclick="reloadNotes();" checked>Show finished</label>
+                    <label><input type="checkbox" id="filtershowfinished">Show finished</label>
                 </div>
                 <div>
                     <label>Style:
@@ -74,8 +74,9 @@
         <script src="libs/moment.js"></script>
         <script src="scripts/common.js"></script>
         <script src="scripts/styleswitcher.js"></script>
+        <script src="scripts/sortoptions.js"></script>
+        <script src="scripts/filteroptions.js"></script>
         <script src="scripts/helpers.js"></script>
         <script src="scripts/index.js"></script>
-        <script>reloadNotes();</script>
     </body>
 </html>
