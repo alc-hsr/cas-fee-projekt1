@@ -1,0 +1,131 @@
+/* Common styles for index and detail page */
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+}
+
+header {
+    background: rgb(0, 80, 146);
+    color: white;
+}
+
+h1 {
+    margin-left: 10px;
+}
+
+footer {
+    display: flex;
+    justify-content: flex-start;
+    background: white url('../images/hsr.png') 10px no-repeat;
+    background-size: 130px;
+    height: 70px;
+    padding: 2px;
+    color: white;
+    border-top: 1px solid rgb(0, 80, 146);
+}
+
+button {
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 2px;
+    background: rgb(0, 80, 146);
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+/* Static part of the index page (title, toolbar for buttons and options) */
+#indexpageheader {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+#indexpagetitle {
+    display: flex;
+    justify-content: flex-start;
+}
+#toolbarcontainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    background: rgb(204, 220, 233);
+    padding: 10px;
+    color: rgb(0, 80, 146);
+}
+#newbutton {
+    flex-direction: row;
+}
+
+/* Dynamic part for the notes */
+.notecontainer {
+    display: flex;
+    flex-direction: row;
+}
+article {
+    padding: 10px;
+    border-bottom: 1px solid rgb(204, 220, 233);
+}
+article:last-child {
+    border-bottom: none;
+}
+article:hover {
+    background-color: rgb(204, 220, 233);
+}
+.notecolumnleft {
+    flex: 0 0 200px;
+}
+.notecolumnmiddle {
+    flex: 6;
+}
+.notecolumnright {
+    flex: 0 0 120px;
+    text-align: right;
+}
+.noteduedate {
+    font-weight: bold;
+}
+.notesummary {
+    font-weight: bold;
+    cursor: pointer;
+}
+p {
+    font-style: italic;
+}
+
+/* Styles for the detail page */
+#detailpagetitle {
+    display: flex;
+    justify-content: flex-start;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+.labelvaluepair {
+    display: flex;
+    flex-direction: row;
+    padding: 2px;
+}
+.labelitem {
+    flex: 1;
+}
+.valueitem {
+    flex: 4;
+}
+#description {
+    min-height: 100px;
+}
+
+#detailbuttonbar {
+    display: flex;
+    justify-content: flex-start;
+    background: rgb(204, 220, 233);
+    padding: 10px;
+}

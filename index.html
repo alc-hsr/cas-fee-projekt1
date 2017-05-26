@@ -4,8 +4,8 @@
         <meta charset="UTF-8">
         <meta name="description" content="A simple notes application">
         <title>Notes Application</title>
-        <link rel="stylesheet" href="styles/common-styles.css" type="text/css">
-        <link rel="stylesheet" href="styles/index-styles.css" type="text/css">
+        <link rel="stylesheet" href="styles/authors-style.css" type="text/css" id="activestyle">
+        <link rel="alternate stylesheet" href="styles/hsr-style.css" type="text/css">
     </head>
     <body>
         <header id="indexpageheader">
@@ -27,9 +27,9 @@
                 </div>
                 <div>
                     <label>Style:
-                        <select>
-                            <option>Bright Theme</option>
-                            <option>Dark Theme</option>
+                        <select id="styleswitcher">
+                            <option value="styles/authors-style.css">Author's Style</option>
+                            <option value="styles/hsr-style.css">HSR Style</option>
                         </select>
                     </label>
                 </div>
@@ -66,13 +66,12 @@
                 {{/notes}}
             </script>
         </main>
-        <footer>
-            <a href="https://www.hsr.ch"><img src="images/hsr.jpg"></a>
-        </footer>
+        <footer></footer>
         <script src="http://builds.handlebarsjs.com.s3.amazonaws.com/handlebars-v4.0.5.js"></script>
         <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
         <script src="https://momentjs.com/downloads/moment.js"></script>
         <script src="scripts/common.js"></script>
+        <script src="scripts/styleswitcher.js"></script>
         <script src="scripts/helpers.js"></script>
         <script src="scripts/index.js"></script>
         <script>reloadNotes();</script>

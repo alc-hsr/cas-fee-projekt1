@@ -1,5 +1,18 @@
 'use strict';
 
+(function() {
+    let switcher = document.getElementById("styleswitcher");
+
+    let activeStyle = getActiveStyle();
+    $("#styleswitcher").val(activeStyle);
+    activateStyle(activeStyle);
+
+    switcher.addEventListener('change', function() {
+        let selectedStyle = $("#styleswitcher").val();
+        activateStyle(selectedStyle);
+    });
+})();
+
 function createNewNote() {
     location.href = 'detail.html';
 }

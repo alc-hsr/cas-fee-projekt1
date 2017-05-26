@@ -3,8 +3,8 @@
     <head>
         <meta charset="UTF-8">
         <title>Note Detail</title>
-        <link rel="stylesheet" href="styles/common-styles.css" type="text/css">
-        <link rel="stylesheet" href="styles/detail-styles.css" type="text/css">
+        <link rel="stylesheet" href="styles/authors-style.css" type="text/css" id="activestyle">
+        <link rel="alternate stylesheet" href="styles/hsr-style.css" type="text/css" id="hsrstyle">
     </head>
     <body>
         <header id="detailpagetitle">
@@ -54,13 +54,12 @@
                 <button id="canceldetail" onclick="cancelDetailPage();"><img src="images/cancel.png">Cancel</button>
             </div>
         </main>
-        <footer>
-            <a href="https://www.hsr.ch"><img src="images/hsr.jpg"></a>
-        </footer>
+        <footer></footer>
         <script src="http://builds.handlebarsjs.com.s3.amazonaws.com/handlebars-v4.0.5.js"></script>
         <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
         <script src="https://momentjs.com/downloads/moment.js"></script>
         <script src="scripts/common.js"></script>
+        <script src="scripts/styleswitcher.js"></script>
         <script src="scripts/helpers.js"></script>
         <script src="scripts/detail.js"></script>
     </body>

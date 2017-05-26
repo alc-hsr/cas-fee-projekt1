@@ -1,16 +1,20 @@
 'use strict';
 
-let currentNoteId = getCurrentNoteId();
-if (currentNoteId) {
-    loadNote(currentNoteId);
-}
-else {
-    $("#createddatelabel").hide();
-    $("#createddate").hide();
-    $("#finisheddatelabel").hide();
-    $("#finisheddate").hide();
-}
-onImportanceAdjusted();
+(function() {
+    activateStyle(getActiveStyle());
+
+    let currentNoteId = getCurrentNoteId();
+    if (currentNoteId) {
+        loadNote(currentNoteId);
+    }
+    else {
+        $("#createddatelabel").hide();
+        $("#createddate").hide();
+        $("#finisheddatelabel").hide();
+        $("#finisheddate").hide();
+    }
+    onImportanceAdjusted();
+})();
 
 function getCurrentNoteId() {
     let searchParams = new URLSearchParams(window.location.search);

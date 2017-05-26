@@ -1,0 +1,133 @@
+/* Common styles for index and detail page */
+body {
+    font-family: Calibri, Helvetica, sans-serif;
+    background: url('../images/background.png') repeat;
+}
+
+header {
+    background: linear-gradient(to bottom, #9ae4ff 30%, aliceblue 70%);
+    border: 2px solid black;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+
+footer {
+    display: flex;
+    justify-content: center;
+    background: aliceblue url('../images/hsr.png') center no-repeat;
+    background-size: 130px;
+    height: 70px;
+    padding: 2px;
+    border: 2px solid black;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+button {
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 2px;
+}
+
+/* Static part of the index page (title, toolbar for buttons and options) */
+#indexpageheader {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+#indexpagetitle {
+    display: flex;
+    justify-content: center;
+}
+#toolbarcontainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    border-top: 2px solid black;
+    padding: 10px;
+}
+#newbutton {
+    flex-direction: row;
+}
+
+/* Dynamic part for the notes */
+.notecontainer {
+    display: flex;
+    flex-direction: row;
+}
+article {
+    padding: 10px;
+    border-bottom: 1px dashed black;
+    border-left: 2px solid black;
+    border-right: 2px solid black;
+    background: white;
+}
+article:last-child {
+    border-bottom: none;
+}
+article:hover {
+    background-color: aliceblue;
+}
+.notecolumnleft {
+    flex: 0 0 200px;
+}
+.notecolumnmiddle {
+    flex: 6;
+}
+.notecolumnright {
+    flex: 0 0 120px;
+    text-align: right;
+}
+.noteduedate {
+    font-weight: bold;
+}
+.notesummary {
+    font-weight: bold;
+    cursor: pointer;
+}
+p {
+    font-style: italic;
+}
+
+/* Styles for the detail page */
+#detailpagetitle {
+    display: flex;
+    justify-content: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    border-left: 2px solid black;
+    border-right: 2px solid black;
+    background: white;
+}
+.labelvaluepair {
+    display: flex;
+    flex-direction: row;
+    padding: 2px;
+}
+.labelitem {
+    flex: 1;
+}
+.valueitem {
+    flex: 4;
+}
+#description {
+    min-height: 100px;
+}
+
+#detailbuttonbar {
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    background: aliceblue;
+    border-top: 2px solid black;
+    border-left: 2px solid black;
+    border-right: 2px solid black;
+}
