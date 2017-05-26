@@ -33,6 +33,7 @@ button {
 
 p {
     font-style: italic;
+    white-space: pre-wrap;
 }
 
 /* Static part of the index page (title, toolbar for buttons and options) */
