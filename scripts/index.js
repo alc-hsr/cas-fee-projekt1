@@ -60,10 +60,25 @@ function reloadNotes() {
 
 function loadNotes(showFinished, sortOrder) {
     let originalNotesContainer = getAllNotes();
+    updateNoteCounter(originalNotesContainer);
+
     let filteredNotesContainer = filterNotes(originalNotesContainer, showFinished);
     let sortedNotesContainer = sortNotes(filteredNotesContainer, sortOrder);
     let template = Handlebars.compile(document.getElementById("notetemplate").innerHTML);
     document.getElementById("notecontent").innerHTML =  template(sortedNotesContainer);
+}
+
+function updateNoteCounter(notesContainer) {
+    let countAll = 0;
+    let countFinished = 0;
+    for (let note of notesContainer.notes) {
+        countAll++;
+        if (note.finishDate) {
+            countFinished++;
+        }
+    }
+    let template = Handlebars.compile(document.getElementById("notecounttemplate").innerHTML);
+    document.getElementById("notecount").innerHTML =  template({countAll: countAll, countFinished: countFinished});
 }
 
 function filterNotes(originalNotesContainer, showFinished) {

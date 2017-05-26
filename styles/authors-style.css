@@ -31,6 +31,10 @@ button {
     margin: 2px;
 }
 
+p {
+    font-style: italic;
+}
+
 /* Static part of the index page (title, toolbar for buttons and options) */
 #indexpageheader {
     display: flex;
@@ -39,7 +43,8 @@ button {
 }
 #indexpagetitle {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
+    align-items: center;
 }
 #toolbarcontainer {
     display: flex;
@@ -54,7 +59,7 @@ button {
     flex-direction: row;
 }
 
-/* Dynamic part for the notes */
+/* Dynamic part of the index page (list of notes) */
 .notecontainer {
     display: flex;
     flex-direction: row;
@@ -88,9 +93,6 @@ article:hover {
 .notesummary {
     font-weight: bold;
     cursor: pointer;
-}
-p {
-    font-style: italic;
 }
 
 /* Styles for the detail page */
