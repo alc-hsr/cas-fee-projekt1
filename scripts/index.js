@@ -92,11 +92,11 @@ function filterNotes(originalNotesContainer, showFinished) {
 
 function sortNotes(originalNotesContainer, sortOrder) {
     switch (sortOrder) {
-        case 'sortByFinishDate':
+        case 'sortByDueDate':
             return {
-                notes: originalNotesContainer.notes.sort(compareByFinishDate)
+                notes: originalNotesContainer.notes.sort(compareByDueDate)
             };
-        case 'sortByCreatedDate':
+        case 'sortByCreationDate':
             return {
                 notes: originalNotesContainer.notes.sort(compareByCreationDate)
             };
@@ -108,8 +108,8 @@ function sortNotes(originalNotesContainer, sortOrder) {
     return originalNotesContainer;
 }
 
-function compareByFinishDate(note1, note2) {
-    return compareByDate(note1.finishDate, note2.finishDate);
+function compareByDueDate(note1, note2) {
+    return compareByDate(note1.dueDate, note2.dueDate);
 }
 
 function compareByCreationDate(note1, note2) {

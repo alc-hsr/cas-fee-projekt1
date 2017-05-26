@@ -8,8 +8,8 @@
         loadNote(currentNoteId);
     }
     else {
-        $("#createddatelabel").hide();
-        $("#createddate").hide();
+        $("#creationdatelabel").hide();
+        $("#creationdate").hide();
         $("#finisheddatelabel").hide();
         $("#finisheddate").hide();
     }
@@ -36,7 +36,7 @@ function loadNote(noteId) {
         $("#description").val(note.description);
         $("#importanceitem").val(note.importance);
         $("#duedate").val(note.dueDate);
-        $("#createddate").val(note.creationDate);
+        $("#creationdate").val(note.creationDate);
         $("#finisheddate").val(note.finishDate);
     }
 }
