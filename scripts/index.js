@@ -3,9 +3,7 @@
 (function() {
     // Init style
     let switcher = document.getElementById("styleswitcher");
-    let activeStyle = getActiveStyle();
-    $("#styleswitcher").val(activeStyle);
-    activateStyle(activeStyle);
+    $("#styleswitcher").val(getActiveStyle());
     switcher.addEventListener('change', onStyleChanged);
 
     // Init sort options
@@ -21,9 +19,7 @@
     $('#filtershowfinished').prop('checked', showFinished);
 
     // Init listener for new button
-    document.getElementById('newbutton').addEventListener('click', function() {
-        createNewNote();
-    });
+    document.getElementById('newbutton').addEventListener('click', createNewNote);
 
     reloadNotes();
 })();

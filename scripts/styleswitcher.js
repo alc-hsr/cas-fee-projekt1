@@ -1,5 +1,9 @@
 'use strict';
 
+(function() {
+    activateStyle(getActiveStyle());
+})();
+
 function activateStyle(style) {
     document.getElementById('activestyle').href = style;
 }
