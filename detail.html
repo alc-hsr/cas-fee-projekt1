@@ -27,7 +27,7 @@
                         <script id="importanceitemimagestemplate" type="text/x-handlebars-template">
                             {{{importanceHelper importance true}}}
                         </script>
-                        <input id="importanceitem" type="range" min="0" max="5" value="0" onchange="onImportanceAdjusted();">
+                        <input id="importanceitem" type="range" min="0" max="5" value="0">
                     </div>
                 </div>
                 <div class="labelvaluepair">
@@ -50,8 +50,8 @@
                 </div>
             </form>
             <div id="detailbuttonbar">
-                <button id="savedetail" onclick="saveNote();"><img src="images/save.png">Save</button>
-                <button id="canceldetail" onclick="cancelDetailPage();"><img src="images/cancel.png">Cancel</button>
+                <button id="savedetail"><img src="images/save.png">Save</button>
+                <button id="canceldetail"><img src="images/cancel.png">Cancel</button>
             </div>
         </main>
         <footer></footer>

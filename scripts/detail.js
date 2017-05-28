@@ -13,6 +13,11 @@
         $("#finisheddatelabel").hide();
         $("#finisheddate").hide();
     }
+
+    document.getElementById('savedetail').addEventListener('click', saveNote);
+    document.getElementById('canceldetail').addEventListener('click', cancelDetailPage);
+    document.getElementById('importanceitem').addEventListener('change', onImportanceAdjusted);
+
     onImportanceAdjusted();
 })();
 
