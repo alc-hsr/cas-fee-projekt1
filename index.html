@@ -16,7 +16,7 @@
             </div>
             <div id="toolbarcontainer">
                 <div>
-                    <button id="newbutton" onclick="createNewNote();"><img src="images/new.png">New Note</button>
+                    <button id="newbutton"><img src="images/new.png">New Note</button>
                 </div>
                 <div>
                     <label>Sort by:</label>
@@ -46,9 +46,9 @@
                         <div class="noteduedate">{{dueDate}}</div>
                         <div>
                             {{#if finishDate}}
-                            <label><input type="checkbox" onclick="finishNote({{id}}, true);" checked>Finished ({{finishDate}})</label>
+                            <label><input type="checkbox" class="finishcheckbox" data-noteid="{{id}}" data-alreadyfinished="true" checked>Finished ({{finishDate}})</label>
                             {{else}}
-                            <label><input type="checkbox" onclick="finishNote({{id}}, false);">Finished</label>
+                            <label><input type="checkbox" class="finishcheckbox" data-noteid="{{id}}" data-alreadyfinished="false">Finished</label>
                             {{/if}}
                         </div>
                     </div>
@@ -61,8 +61,8 @@
                         </details>
                     </div>
                     <div class="notecolumnright">
-                        <button onclick="showNoteDetails({{id}});"><img src="images/edit.png">Edit</button>
-                        <button onclick="deleteNote({{id}});"><img src="images/delete.png">Delete</button>
+                        <button class="editbutton" data-noteid="{{id}}"><img src="images/edit.png" data-noteid="{{id}}">Edit</button>
+                        <button class="deletebutton" data-noteid="{{id}}"><img src="images/delete.png" data-noteid="{{id}}">Delete</button>
                     </div>
                 </article>
                 {{/notes}}
