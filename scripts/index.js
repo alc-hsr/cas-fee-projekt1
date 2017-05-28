@@ -88,15 +88,19 @@ function reloadNotes() {
 
 function loadNotes(showFinished, sortOrder) {
     let originalNotesContainer = getAllNotes();
-    updateNoteCounter(originalNotesContainer);
+    let noteCounter = getNoteCounter(originalNotesContainer);
 
     let filteredNotesContainer = filterNotes(originalNotesContainer, showFinished);
+    noteCounter.countDisplaying = filteredNotesContainer.notes.length;
+
     let sortedNotesContainer = sortNotes(filteredNotesContainer, sortOrder);
     let template = Handlebars.compile(document.getElementById("notetemplate").innerHTML);
     document.getElementById("notecontent").innerHTML =  template(sortedNotesContainer);
+
+    updateNoteCounter(noteCounter);
 }
 
-function updateNoteCounter(notesContainer) {
+function getNoteCounter(notesContainer) {
     let countAll = 0;
     let countFinished = 0;
     for (let note of notesContainer.notes) {
@@ -105,8 +109,15 @@ function updateNoteCounter(notesContainer) {
             countFinished++;
         }
     }
+    return {
+        countAll: countAll,
+        countFinished: countFinished
+    };
+}
+
+function updateNoteCounter(noteCounter) {
     let template = Handlebars.compile(document.getElementById("notecounttemplate").innerHTML);
-    document.getElementById("notecount").innerHTML =  template({countAll: countAll, countFinished: countFinished});
+    document.getElementById("notecount").innerHTML =  template(noteCounter);
 }
 
 function filterNotes(originalNotesContainer, showFinished) {
