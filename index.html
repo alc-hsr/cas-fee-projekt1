@@ -17,7 +17,7 @@
             </div>
             <div id="toolbarcontainer">
                 <div>
-                    <button id="newbutton"><img src="images/new.png">New Note</button>
+                    <button id="newbutton"><img class="buttonimage" src="images/new.png">New Note</button>
                 </div>
                 <div>
                     <label>Sort by:</label>
@@ -62,8 +62,8 @@
                         </details>
                     </div>
                     <div class="notecolumnright">
-                        <button class="editbutton" data-noteid="{{id}}"><img src="images/edit.png" data-noteid="{{id}}">Edit</button>
-                        <button class="deletebutton" data-noteid="{{id}}"><img src="images/delete.png" data-noteid="{{id}}">Delete</button>
+                        <button class="editbutton" data-noteid="{{id}}"><img class="buttonimage" src="images/edit.png" data-noteid="{{id}}">Edit</button>
+                        <button class="deletebutton button-red" data-noteid="{{id}}"><img class="buttonimage" src="images/delete.png" data-noteid="{{id}}">Delete</button>
                     </div>
                 </article>
                 {{/notes}}
