@@ -79,6 +79,26 @@ p {
     flex-direction: row;
 }
 
+input[type="radio"],
+#filtershowfinished {
+    position: absolute;
+    top: -20px;
+}
+
+input[type="radio"] ~ span,
+#filtershowfinished ~ span {
+    border: 1px solid rgb(0, 80, 146);
+    border-radius: 3px;
+    cursor: pointer;
+    padding: 5px;
+}
+
+input[type="radio"]:checked ~ span,
+#filtershowfinished:checked ~ span {
+    background: rgb(0, 80, 146);
+    color: white;
+}
+
 /* Dynamic part of the index page (list of notes) */
 .notecontainer {
     display: flex;
