@@ -119,8 +119,8 @@ function loadNotes(showFinished, sortOrder) {
     noteCounter.countDisplaying = filteredNotesContainer.notes.length;
 
     let sortedNotesContainer = sortNotes(filteredNotesContainer, sortOrder);
-    let template = Handlebars.compile(document.getElementById("notetemplate").innerHTML);
-    document.getElementById("notecontent").innerHTML =  template(sortedNotesContainer);
+    let createNotesHtml = Handlebars.compile(document.getElementById("notetemplate").innerHTML);
+    document.getElementById("notecontent").innerHTML = createNotesHtml(sortedNotesContainer);
 
     updateNoteCounter(noteCounter);
 }
@@ -141,8 +141,8 @@ function getNoteCounter(notesContainer) {
 }
 
 function updateNoteCounter(noteCounter) {
-    let template = Handlebars.compile(document.getElementById("notecounttemplate").innerHTML);
-    document.getElementById("notecount").innerHTML =  template(noteCounter);
+    let createCounterHtml = Handlebars.compile(document.getElementById("notecounttemplate").innerHTML);
+    document.getElementById("notecount").innerHTML = createCounterHtml(noteCounter);
 }
 
 function filterNotes(originalNotesContainer, showFinished) {

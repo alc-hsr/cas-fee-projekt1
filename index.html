@@ -41,15 +41,19 @@
         <main>
             <section id="notecontent"></section>
             <script id="notetemplate" type="text/x-handlebars-template">
-                {{#notes}}
+                {{#each notes}}
                 <article class="notecontainer">
                     <div class="notecolumnleft">
-                        <div class="noteduedate">{{dueDate}}</div>
+                        <label class="noteduedateabsolute">{{formatDateHelper dueDate 'DD.MM.YYYY'}}</label>
+                        {{#if dueDate}}
+                        <label class="noteduedaterelative">({{relativeDateHelper dueDate}})</label>
+                        {{/if}}
                         <div>
                             {{#if finishDate}}
-                            <label><input type="checkbox" class="finishcheckbox" data-noteid="{{id}}" data-alreadyfinished="true" checked>Finished ({{finishDate}})</label>
+                            <label><input type="checkbox" class="finishcheckbox" data-noteid="{{id}}" data-alreadyfinished="true" checked>Finished</label>
+                            <label class="notefinishdaterelative">(on {{formatDateHelper finishDate 'DD.MM.YYYY'}})</label>
                             {{else}}
-                            <label><input type="checkbox" class="finishcheckbox" data-noteid="{{id}}" data-alreadyfinished="false">Finished</label>
+                            <label><input type="checkbox" class="finishcheckbox" data-noteid="{{id}}" data-alreadyfinished="false">Finish</label>
                             {{/if}}
                         </div>
                     </div>
@@ -66,7 +70,9 @@
                         <button class="deletebutton button-red" data-noteid="{{id}}"><img class="buttonimage" src="images/delete.png" data-noteid="{{id}}">Delete</button>
                     </div>
                 </article>
-                {{/notes}}
+                {{else}}
+                <article>No notes available to be displayed</article>
+                {{/each}}
             </script>
         </main>
         <footer></footer>

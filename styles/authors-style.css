@@ -92,8 +92,12 @@ article:hover {
     flex: 0 0 120px;
     text-align: right;
 }
-.noteduedate {
+.noteduedateabsolute {
     font-weight: bold;
+}
+.noteduedaterelative,
+.notefinishdaterelative {
+    font-size: 0.7em;
 }
 .notesummary {
     font-weight: bold;
