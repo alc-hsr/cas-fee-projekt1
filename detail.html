@@ -23,13 +23,16 @@
                 </div>
                 <div class="labelvaluepair">
                     <label class="labelitem" for="importanceitem">Importance:</label>
-                    <div class="valueitem">
-                        <section id="importanceitemimages"></section>
-                        <script id="importanceitemimagestemplate" type="text/x-handlebars-template">
-                            {{{importanceHelper importance true true}}}
-                        </script>
-                        <input id="importanceitem" type="range" min="0" max="5" value="0">
-                    </div>
+                    <div class="valueitem" id="importanceitem" data-value="0"></div>
+                    <script id="importanceitemtemplate" type="text/x-handlebars-template">
+                        {{#each importanceData}}
+                            {{#if selected}}
+                                <img class="importancestar" data-importance="{{importance}}" src="images/important_selected_24.png">
+                            {{else}}
+                                <img class="importancestar" data-importance="{{importance}}" src="images/important_deselected_24.png">
+                            {{/if}}
+                        {{/each}}
+                    </script>
                 </div>
                 <div class="labelvaluepair">
                     <label class="labelitem" for="duedate">Due Date:</label>

@@ -161,6 +161,9 @@ form {
 #description {
     min-height: 100px;
 }
+.importancestar {
+    cursor: pointer;
+}
 
 #detailbuttonbar {
     display: flex;

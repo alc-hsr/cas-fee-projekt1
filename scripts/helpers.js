@@ -3,27 +3,14 @@
 (function() {
     /*
      * 'importanceHelper' is responsible to print as many star images as the 'importance'
-     * of the note is. If 'showDeselected' is true, then it will print deselected stars to
-     * fulfill a row of 5 stars. If 'bigger' is true it will use the image with the size
-     * 24x24 instead of 16x16.
+     * of the note is.
      */
-    Handlebars.registerHelper('importanceHelper', (importance, showDeselected, bigger) => {
-        let result = '';
-        let index = 0;
-        let maxImportance = 5;
-        let fileSuffix = '_16.png';
-        if (bigger) {
-            fileSuffix = '_24.png';
+    Handlebars.registerHelper('importanceHelper', (importance) => {
+        let resultHtmlText = '';
+        for (let index = 0; index < importance; index++) {
+            resultHtmlText += '<img src="images/important_selected_16.png">';
         }
-        for (; index < importance; index++) {
-            result += '<img src="images/important_selected' + fileSuffix + '">';
-        }
-        if (showDeselected) {
-            for (; index < maxImportance; index++) {
-                result += '<img src="images/important_deselected' + fileSuffix + '">';
-            }
-        }
-        return result;
+        return resultHtmlText;
     });
 
     /*

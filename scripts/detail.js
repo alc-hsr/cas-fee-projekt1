@@ -18,6 +18,18 @@
     document.getElementById('canceldetail').addEventListener('click', cancelDetailPage);
     document.getElementById('importanceitem').addEventListener('change', onImportanceAdjusted);
 
+    let importanceItem = $('#importanceitem');
+    importanceItem.on('click', '.importancestar', (event) => {
+        let importance = parseInt(event.target.getAttribute('data-importance'));
+        let importanceItem = $('#importanceitem');
+        let previousImportance = parseInt(importanceItem.val());
+        if (previousImportance === importance) {
+            importance = 0;
+        }
+        importanceItem.val(importance);
+        onImportanceAdjusted();
+    });
+
     onImportanceAdjusted();
 })();
 
@@ -30,8 +42,13 @@ function getCurrentNoteId() {
 }
 
 function onImportanceAdjusted() {
-    let createImportanceHtml = Handlebars.compile(document.getElementById("importanceitemimagestemplate").innerHTML);
-    document.getElementById("importanceitemimages").innerHTML = createImportanceHtml({importance : $("#importanceitem").val()});
+    let importanceData = [];
+    let importance = $("#importanceitem").val();
+    for (let index = 1; index <= 5; index++) {
+        importanceData.push({selected: index <= importance, importance: index});
+    }
+    let createImportanceStarsHtml = Handlebars.compile(document.getElementById("importanceitemtemplate").innerHTML);
+    document.getElementById("importanceitem").innerHTML = createImportanceStarsHtml({importanceData: importanceData});
 }
 
 function loadNote(noteId) {
