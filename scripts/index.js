@@ -21,6 +21,20 @@
     // Init listener for new button
     document.getElementById('newbutton').addEventListener('click', createNewNote);
 
+    // Init listeners for note actions
+    let noteContentElement = $('#notecontent');
+    noteContentElement.on('click', '.finishcheckbox', (event) => {
+        let noteId = event.target.getAttribute('data-noteid');
+        let isAlreadyFinished = event.target.getAttribute('data-alreadyfinished');
+        finishNote(noteId, (isAlreadyFinished == 'true'));
+    });
+    noteContentElement.on('click', '.editbutton', (event) => {
+        showNoteDetails(event.target.getAttribute('data-noteid'));
+    });
+    noteContentElement.on('click', '.deletebutton', (event) => {
+        deleteNote(event.target.getAttribute('data-noteid'));
+    });
+
     reloadNotes();
 })();
 
@@ -85,30 +99,6 @@ function reloadNotes() {
     let showFinished = isShowFinishedEnabled();
     let sortOrder = getActiveSortOrder();
     loadNotes(showFinished, sortOrder);
-
-    // Init listeners
-    let finishCheckboxes = document.getElementsByClassName('finishcheckbox');
-    for (let checkbox of finishCheckboxes) {
-        checkbox.addEventListener('click', function(event) {
-            let noteId = event.target.getAttribute('data-noteid');
-            let isAlreadyFinished = event.target.getAttribute('data-alreadyfinished');
-            finishNote(noteId, (isAlreadyFinished == 'true'));
-        });
-    }
-
-    let editButtons = document.getElementsByClassName('editbutton');
-    for (let button of editButtons) {
-        button.addEventListener('click', function(event) {
-            showNoteDetails(event.target.getAttribute('data-noteid'));
-        });
-    }
-
-    let deleteButtons = document.getElementsByClassName('deletebutton');
-    for (let button of deleteButtons) {
-        button.addEventListener('click', function(event) {
-            deleteNote(event.target.getAttribute('data-noteid'));
-        });
-    }
 }
 
 function loadNotes(showFinished, sortOrder) {
