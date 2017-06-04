@@ -16,62 +16,56 @@
                 <script id="notecounttemplate" type="text/x-handlebars-template">Displaying {{countDisplaying}} of {{countAll}} notes ({{countFinished}} notes are finished)</script>
             </div>
             <div id="toolbarcontainer">
-                <div>
-                    <button id="newbutton"><img class="buttonimage" src="images/new.png">New Note</button>
-                </div>
+                <button id="newbutton"><img class="buttonimage" src="images/new.png">New Note</button>
                 <div>
                     <label>Sort by:</label>
                     <label><input type="radio" id="sortByDueDate" name="sortorder" value="sortByDueDate"><span>Due date</span></label>
                     <label><input type="radio" id="sortByCreationDate" name="sortorder" value="sortByCreationDate"><span>Creation date</span></label>
                     <label><input type="radio" id="sortByImportance" name="sortorder" value="sortByImportance"><span>Importance</span></label>
                 </div>
-                <div>
-                    <label><input type="checkbox" id="filtershowfinished"><span>Show finished</span></label>
-                </div>
-                <div>
-                    <label>Style:
-                        <select id="styleswitcher">
-                            <option value="styles/authors-style.css">Author's Style</option>
-                            <option value="styles/hsr-style.css">HSR Style</option>
-                        </select>
-                    </label>
-                </div>
+                <label><input type="checkbox" id="filtershowfinished"><span>Show finished</span></label>
+                <label>Style:
+                    <select id="styleswitcher">
+                        <option value="styles/authors-style.css">Author's Style</option>
+                        <option value="styles/hsr-style.css">HSR Style</option>
+                    </select>
+                </label>
             </div>
         </header>
         <main>
-            <section id="notecontent"></section>
+            <div id="notecontent"></div>
             <script id="notetemplate" type="text/x-handlebars-template">
                 {{#each notes}}
-                <article class="notecontainer">
-                    <div class="notecolumnleft">
-                        <label class="noteduedateabsolute">{{formatDateHelper dueDate 'DD.MM.YYYY'}}</label>
-                        {{#if dueDate}}
-                        <label class="noteduedaterelative">({{relativeDateHelper dueDate}})</label>
-                        {{/if}}
-                        <div>
-                            {{#if finishDate}}
-                            <label><input type="checkbox" class="finishcheckbox" data-noteid="{{id}}" data-alreadyfinished="true" checked>Finished</label>
-                            <label class="notefinishdaterelative">(on {{formatDateHelper finishDate 'DD.MM.YYYY'}})</label>
-                            {{else}}
-                            <label><input type="checkbox" class="finishcheckbox" data-noteid="{{id}}" data-alreadyfinished="false">Finish</label>
+                    <article class="notecontainer">
+                        <div class="notecolumnleft">
+                            <label class="noteduedateabsolute">{{formatDateHelper dueDate 'DD.MM.YYYY'}}</label>
+                            {{#if dueDate}}
+                                <label class="noteduedaterelative">({{relativeDateHelper dueDate}})</label>
                             {{/if}}
+                            <div>
+                                {{#if finishDate}}
+                                    <label><input type="checkbox" class="finishcheckbox" data-noteid="{{id}}" data-alreadyfinished="true" checked>Finished</label>
+                                    <label class="notefinishdaterelative">(on {{formatDateHelper finishDate 'DD.MM.YYYY'}})</label>
+                                {{else}}
+                                    <label><input type="checkbox" class="finishcheckbox" data-noteid="{{id}}" data-alreadyfinished="false">Finish</label>
+                                {{/if}}
+                            </div>
                         </div>
-                    </div>
-                    <div class="notecolumnmiddle">
-                        <details>
-                            <summary class="notesummary">
-                                {{title}} {{{importanceHelper importance}}}
-                            </summary>
-                            <p>{{description}}</p>
-                        </details>
-                    </div>
-                    <div class="notecolumnright">
-                        <button class="editbutton" data-noteid="{{id}}"><img class="buttonimage" src="images/edit.png" data-noteid="{{id}}">Edit</button>
-                        <button class="deletebutton button-red" data-noteid="{{id}}"><img class="buttonimage" src="images/delete.png" data-noteid="{{id}}">Delete</button>
-                    </div>
-                </article>
+                        <div class="notecolumnmiddle">
+                            <details>
+                                <summary class="notesummary">
+                                    {{title}} {{{importanceHelper importance}}}
+                                </summary>
+                                <p>{{description}}</p>
+                            </details>
+                        </div>
+                        <div class="notecolumnright">
+                            <button class="editbutton" data-noteid="{{id}}"><img class="buttonimage" src="images/edit.png" data-noteid="{{id}}">Edit</button>
+                            <button class="deletebutton button-red" data-noteid="{{id}}"><img class="buttonimage" src="images/delete.png" data-noteid="{{id}}">Delete</button>
+                        </div>
+                    </article>
                 {{else}}
-                <article>No notes available to be displayed</article>
+                    <article>No notes available to be displayed</article>
                 {{/each}}
             </script>
         </main>
