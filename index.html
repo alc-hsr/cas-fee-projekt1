@@ -38,14 +38,16 @@
                 {{#each notes}}
                     <article class="notecontainer">
                         <div class="notecolumnleft">
-                            <label class="noteduedateabsolute">{{formatDateHelper dueDate 'DD.MM.YYYY'}}</label>
                             {{#if dueDate}}
-                                <label class="noteduedaterelative">({{relativeDateHelper dueDate}})</label>
+                                <time class="noteduedateabsolute" datetime="{{formatDateHelper dueDate 'YYYY-MM-DD'}}">{{formatDateHelper dueDate 'DD.MM.YYYY'}}</time>
+                                <time class="noteduedaterelative" datetime="{{formatDateHelper dueDate 'YYYY-MM-DD'}}">({{relativeDateHelper dueDate}})</time>
+                            {{else}}
+                                <label class="noteduedateabsolute">Anytime</label>
                             {{/if}}
                             <div>
                                 {{#if finishDate}}
                                     <label><input type="checkbox" class="finishcheckbox" data-noteid="{{id}}" data-alreadyfinished="true" checked>Finished</label>
-                                    <label class="notefinishdaterelative">(on {{formatDateHelper finishDate 'DD.MM.YYYY'}})</label>
+                                    <time class="notefinishdaterelative" datetime="{{formatDateHelper finishDate 'YYYY-MM-DD'}}">(on {{formatDateHelper finishDate 'DD.MM.YYYY'}})</time>
                                 {{else}}
                                     <label><input type="checkbox" class="finishcheckbox" data-noteid="{{id}}" data-alreadyfinished="false">Finish</label>
                                 {{/if}}
@@ -61,7 +63,7 @@
                         </div>
                         <div class="notecolumnright">
                             <button class="editbutton" data-noteid="{{id}}"><img class="buttonimage" src="images/edit.png" data-noteid="{{id}}">Edit</button>
-                            <button class="deletebutton button-red" data-noteid="{{id}}"><img class="buttonimage" src="images/delete.png" data-noteid="{{id}}">Delete</button>
+                            <button class="deletebutton color-red" data-noteid="{{id}}"><img class="buttonimage" src="images/delete.png" data-noteid="{{id}}">Delete</button>
                         </div>
                     </article>
                 {{else}}

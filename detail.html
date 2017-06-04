@@ -35,9 +35,10 @@
                     </script>
                 </div>
                 <div class="labelvaluepair">
-                    <label class="labelitem" for="duedate">Due Date:</label>
+                    <label class="labelitem" for="duedate" id="duedatelabel">Due Date:</label>
                     <div class="valueitem">
-                        <input type="date" id="duedate">
+                        <input type="date" id="duedate" placeholder="YYYY-MM-DD">
+                        <label class="color-red" id="duedateinvalid" hidden>Date is not valid!</label>
                     </div>
                 </div>
                 <div class="labelvaluepair">
@@ -55,7 +56,7 @@
             </form>
             <div id="detailbuttonbar">
                 <button id="savedetail"><img class="buttonimage" src="images/save.png">Save</button>
-                <button id="canceldetail" class="button-red"><img class="buttonimage" src="images/cancel.png">Cancel</button>
+                <button id="canceldetail" class="color-red"><img class="buttonimage" src="images/cancel.png">Cancel</button>
             </div>
         </main>
         <footer></footer>

@@ -31,8 +31,12 @@ button {
     margin: 2px;
 }
 
-.button-red {
+.color-red {
     color: red;
+}
+
+.border-red {
+    border-color: red;
 }
 
 p {

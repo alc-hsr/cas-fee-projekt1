@@ -15,11 +15,11 @@
 
     /*
      * 'formatDateHelper' is responsible format the given date with the given format.
-     * If there is no date given, 'Anytime' will be returned.
+     * If there is no date given, an emtpy text is returned.
      */
     Handlebars.registerHelper('formatDateHelper', function(date, pattern) {
         if (!date) {
-            return 'Anytime';
+            return '';
         }
         if (moment) {
             return moment(date).format(pattern);

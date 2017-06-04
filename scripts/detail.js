@@ -105,10 +105,19 @@ function cancelDetailPage() {
 }
 
 function saveNote() {
+    let dueDateField = $("#duedate");
+
     let title = $("#title").val();
     let description = $("#description").val();
     let importance = $("#importanceitem").val();
-    let dueDate = $("#duedate").val();
+    let dueDate = dueDateField.val();
+
+    if (dueDate && !moment(dueDate).isValid()) {
+        dueDateField.toggleClass('border-red', true);
+        $('#duedatelabel').toggleClass('color-red', true);
+        $("#duedateinvalid").prop('hidden', false);
+        return;
+    }
 
     let notesContainer = getAllNotes();
     let noteId = getCurrentNoteIdIfNoteExists();
