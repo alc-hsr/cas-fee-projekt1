@@ -16,7 +16,6 @@
 
     document.getElementById('savedetail').addEventListener('click', saveNote);
     document.getElementById('canceldetail').addEventListener('click', cancelDetailPage);
-    document.getElementById('importanceitem').addEventListener('change', onImportanceAdjusted);
 
     let importanceItem = $('#importanceitem');
     importanceItem.on('click', '.importancestar', function(event) {
