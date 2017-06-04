@@ -3,7 +3,7 @@
 (function() {
     activateStyle(getActiveStyle());
 
-    let currentNoteId = getCurrentNoteId();
+    let currentNoteId = getCurrentNoteIdIfNoteExists();
     if (currentNoteId) {
         loadNote(currentNoteId);
     }
@@ -19,7 +19,7 @@
     document.getElementById('importanceitem').addEventListener('change', onImportanceAdjusted);
 
     let importanceItem = $('#importanceitem');
-    importanceItem.on('click', '.importancestar', (event) => {
+    importanceItem.on('click', '.importancestar', function(event) {
         let importance = parseInt(event.target.getAttribute('data-importance'));
         let importanceItem = $('#importanceitem');
         let previousImportance = parseInt(importanceItem.val());
@@ -33,10 +33,36 @@
     onImportanceAdjusted();
 })();
 
-function getCurrentNoteId() {
-    let searchParams = new URLSearchParams(window.location.search);
-    if (searchParams.has('id')) {
-        return parseInt(searchParams.get('id'));
+function getCurrentNoteIdIfNoteExists() {
+    let idParameter;
+    if (Modernizr.urlsearchparams) {
+        let searchParams = new URLSearchParams(window.location.search);
+        if (searchParams.has('id')) {
+            idParameter = searchParams.get('id');
+        }
+    }
+    else {
+        let urlParameterSplit = window.location.search.split('?');
+        if (urlParameterSplit.length > 1) {
+            let parameters = urlParameterSplit[1].split('&');
+            for (let index = 0; index < parameters.length; index++) {
+                let parameterValueSplit = parameters[index].split('=');
+                let parameter = parameterValueSplit[0];
+                if (parameter === 'id') {
+                    idParameter = parameterValueSplit[1];
+                    break;
+                }
+            }
+        }
+    }
+
+    let noteId;
+    if (idParameter && new RegExp('^[0-9]+$').test(idParameter)) {
+        noteId = parseInt(idParameter);
+    }
+
+    if (noteId && getNote(noteId) !== null) {
+        return noteId;
     }
     return undefined;
 }
@@ -66,7 +92,8 @@ function loadNote(noteId) {
 function getNote(noteId) {
     noteId = parseInt(noteId);
     let notesContainer = getAllNotes();
-    for (let note of notesContainer.notes) {
+    for (let index = 0; index < notesContainer.notes.length; index++) {
+        let note = notesContainer.notes[index];
         if (note.id === noteId) {
             return note;
         }
@@ -85,9 +112,10 @@ function saveNote() {
     let dueDate = $("#duedate").val();
 
     let notesContainer = getAllNotes();
-    let noteId = getCurrentNoteId();
+    let noteId = getCurrentNoteIdIfNoteExists();
     if (noteId) {
-        for (let note of notesContainer.notes) {
+        for (let index = 0; index < notesContainer.notes.length; index++) {
+            let note = notesContainer.notes[index];
             if (note.id === noteId) {
                 note.title = title;
                 note.description = description;

@@ -5,7 +5,7 @@
      * 'importanceHelper' is responsible to print as many star images as the 'importance'
      * of the note is.
      */
-    Handlebars.registerHelper('importanceHelper', (importance) => {
+    Handlebars.registerHelper('importanceHelper', function(importance) {
         let resultHtmlText = '';
         for (let index = 0; index < importance; index++) {
             resultHtmlText += '<img src="images/important_selected_16.png">';
@@ -17,7 +17,7 @@
      * 'formatDateHelper' is responsible format the given date with the given format.
      * If there is no date given, 'Anytime' will be returned.
      */
-    Handlebars.registerHelper('formatDateHelper', (date, pattern) => {
+    Handlebars.registerHelper('formatDateHelper', function(date, pattern) {
         if (!date) {
             return 'Anytime';
         }
@@ -33,7 +33,7 @@
      * 'relativeDateHelper' is responsible to print a text which represents the given
      * date relative to today. If the date is today, then 'today' will be returned.
      */
-    Handlebars.registerHelper('relativeDateHelper', (date) => {
+    Handlebars.registerHelper('relativeDateHelper', function(date) {
         if (!date) {
             return '';
         }

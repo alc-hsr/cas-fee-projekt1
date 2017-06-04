@@ -23,15 +23,15 @@
 
     // Init listeners for note actions
     let noteContentElement = $('#notecontent');
-    noteContentElement.on('click', '.finishcheckbox', (event) => {
+    noteContentElement.on('click', '.finishcheckbox', function(event) {
         let noteId = event.target.getAttribute('data-noteid');
         let isAlreadyFinished = event.target.getAttribute('data-alreadyfinished');
         finishNote(noteId, (isAlreadyFinished == 'true'));
     });
-    noteContentElement.on('click', '.editbutton', (event) => {
+    noteContentElement.on('click', '.editbutton', function(event) {
         showNoteDetails(event.target.getAttribute('data-noteid'));
     });
-    noteContentElement.on('click', '.deletebutton', (event) => {
+    noteContentElement.on('click', '.deletebutton', function(event) {
         deleteNote(event.target.getAttribute('data-noteid'));
     });
 
@@ -63,7 +63,8 @@ function createNewNote() {
 function finishNote(noteId, isAlreadyFinished) {
     let notesContainer = getAllNotes();
     noteId = parseInt(noteId);
-    for (let note of notesContainer.notes) {
+    for (let index = 0; index < notesContainer.notes.length; index++) {
+        let note = notesContainer.notes[index];
         if (note.id === noteId) {
             if (isAlreadyFinished) {
                 note.finishDate = undefined;
@@ -118,7 +119,8 @@ function loadNotes(showFinished, sortOrder) {
 function getNoteCounter(notesContainer) {
     let countAll = 0;
     let countFinished = 0;
-    for (let note of notesContainer.notes) {
+    for (let index = 0; index < notesContainer.notes.length; index++) {
+        let note = notesContainer.notes[index];
         countAll++;
         if (note.finishDate) {
             countFinished++;
