@@ -6,12 +6,14 @@
     let currentNoteId = getCurrentNoteIdIfNoteExists();
     if (currentNoteId) {
         loadNote(currentNoteId);
+        printSubTitle(true);
     }
     else {
         $("#creationdatelabel").hide();
         $("#creationdate").hide();
         $("#finisheddatelabel").hide();
         $("#finisheddate").hide();
+        printSubTitle(false);
     }
 
     document.getElementById('savedetail').addEventListener('click', saveNote);
@@ -31,6 +33,11 @@
 
     onImportanceAdjusted();
 })();
+
+function printSubTitle(isEditMode) {
+    let createNoteModeHtml = Handlebars.compile(document.getElementById("notemodetemplate").innerHTML);
+    document.getElementById("notemode").innerHTML = createNoteModeHtml({isEditMode: isEditMode});
+}
 
 function getCurrentNoteIdIfNoteExists() {
     let idParameter;

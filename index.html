@@ -9,12 +9,14 @@
         <script src="scripts/styleswitcher.js"></script>
     </head>
     <body>
-        <header id="indexpageheader">
-            <div id="indexpagetitle">
+        <header>
+            <div class="pagetitle">
                 <h1>Notes Application</h1>
                 <p id="notecount"></p>
                 <script id="notecounttemplate" type="text/x-handlebars-template">Displaying {{countDisplaying}} of {{countAll}} notes ({{countFinished}} notes are finished)</script>
             </div>
+        </header>
+        <main>
             <div id="toolbarcontainer">
                 <button id="newbutton"><img class="buttonimage" src="images/new.png">New Note</button>
                 <div>
@@ -31,8 +33,6 @@
                     </select>
                 </label>
             </div>
-        </header>
-        <main>
             <div id="notecontent"></div>
             <script id="notetemplate" type="text/x-handlebars-template">
                 {{#each notes}}
@@ -46,10 +46,10 @@
                             {{/if}}
                             <div>
                                 {{#if finishDate}}
-                                    <label><input type="checkbox" class="finishcheckbox" data-noteid="{{id}}" data-alreadyfinished="true" checked>Finished</label>
+                                    <label><input type="checkbox" class="finishcheckbox" data-noteid="{{id}}" data-alreadyfinished="true" checked><span>Finished</span></label>
                                     <time class="notefinishdaterelative" datetime="{{formatDateHelper finishDate 'YYYY-MM-DD'}}">(on {{formatDateHelper finishDate 'DD.MM.YYYY'}})</time>
                                 {{else}}
-                                    <label><input type="checkbox" class="finishcheckbox" data-noteid="{{id}}" data-alreadyfinished="false">Finish</label>
+                                    <label><input type="checkbox" class="finishcheckbox" data-noteid="{{id}}" data-alreadyfinished="false"><span>Finish</span></label>
                                 {{/if}}
                             </div>
                         </div>
@@ -71,7 +71,7 @@
                 {{/each}}
             </script>
         </main>
-        <footer></footer>
+        <footer><a href="https://www.hsr.ch"><img src="images/hsr.png"></a></footer>
         <script src="libs/handlebars-v4.0.5.js"></script>
         <script src="libs/jquery-3.2.1.min.js"></script>
         <script src="libs/moment.js"></script>

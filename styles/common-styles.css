@@ -1,0 +1,147 @@
+/* --------------------------------------- */
+/* Common styles for index and detail page */
+/* --------------------------------------- */
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+footer {
+    display: flex;
+    padding: 0.5em;
+}
+
+button {
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: inherit;
+    font-size: inherit;
+    cursor: pointer;
+    margin: 0.1em;
+    padding: 0.2em;
+}
+
+p {
+    font-style: italic;
+    white-space: pre-wrap;
+}
+
+label > input[type="radio"] ~ span,
+label > input[type="checkbox"] ~ span {
+    padding: 0.2em;
+}
+
+.pagetitle {
+    display: flex;
+    align-items: center;
+    padding: 0.5em;
+}
+
+.color-red {
+    color: red;
+}
+
+.border-red {
+    border-color: red;
+}
+
+/* ---------------------------------------------------------------------- */
+/* Static part of the index page (title, toolbar for buttons and options) */
+/* ---------------------------------------------------------------------- */
+
+#toolbarcontainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 0.5em;
+}
+
+#newbutton {
+    flex-direction: row;
+}
+
+/* ---------------------------------------------- */
+/* Dynamic part of the index page (list of notes) */
+/* ---------------------------------------------- */
+
+.notecontainer {
+    display: flex;
+    flex-direction: row;
+}
+
+article {
+    padding: 0.5em;
+}
+article:last-child {
+    border-bottom: none;
+}
+
+.notecolumnleft {
+    flex: 0 0 200px;
+}
+
+.notecolumnmiddle {
+    flex: 6;
+}
+
+.notecolumnright {
+    flex: 0 0 120px;
+    text-align: right;
+}
+
+.noteduedateabsolute {
+    font-weight: bold;
+}
+
+.noteduedaterelative,
+.notefinishdaterelative {
+    font-size: 0.7em;
+}
+
+.notesummary {
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* -------------------------- */
+/* Styles for the detail page */
+/* -------------------------- */
+
+form {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    background: white;
+}
+
+textarea {
+    min-height: 100px;
+}
+
+.labelvaluepair {
+    display: flex;
+    flex-direction: row;
+    padding: 0.2em;
+}
+
+.labelitem {
+    flex: 1;
+}
+
+.valueitem {
+    flex: 4;
+}
+
+.importancestar {
+    cursor: pointer;
+}
+
+#detailbuttonbar {
+    display: flex;
+    padding: 10px;
+}

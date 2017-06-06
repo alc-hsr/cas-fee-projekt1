@@ -8,8 +8,12 @@
         <script src="scripts/styleswitcher.js"></script>
     </head>
     <body>
-        <header id="detailpagetitle">
-            <h1>Note Detail</h1>
+        <header>
+            <div class="pagetitle">
+                <h1>Note Detail</h1>
+                <p id="notemode"></p>
+                <script id="notemodetemplate" type="text/x-handlebars-template">{{#if isEditMode}}Edit an existing note{{else}}Create a new note{{/if}}</script>
+            </div>
         </header>
         <main>
             <form>
@@ -59,7 +63,7 @@
                 <button id="canceldetail" class="color-red"><img class="buttonimage" src="images/cancel.png">Cancel</button>
             </div>
         </main>
-        <footer></footer>
+        <footer><a href="https://www.hsr.ch"><img src="images/hsr.png"></a></footer>
         <script src="libs/handlebars-v4.0.5.js"></script>
         <script src="libs/jquery-3.2.1.min.js"></script>
         <script src="libs/moment.js"></script>

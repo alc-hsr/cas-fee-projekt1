@@ -1,4 +1,9 @@
+@import "common-styles.css";
+
+/* --------------------------------------- */
 /* Common styles for index and detail page */
+/* --------------------------------------- */
+
 body {
     font-family: Arial, Helvetica, sans-serif;
     margin: 0;
@@ -9,84 +14,38 @@ header {
     color: white;
 }
 
-h1 {
-    margin-left: 10px;
-}
-
 footer {
-    display: flex;
     justify-content: flex-start;
-    background: white url('../images/hsr.png') 10px no-repeat;
-    background-size: 130px;
-    height: 70px;
-    padding: 2px;
-    color: white;
     border-top: 1px solid rgb(0, 80, 146);
 }
 
 button {
-    display: inline-flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin: 2px;
     background: rgb(0, 80, 146);
     color: white;
-    border: none;
-    cursor: pointer;
+    border: 1px solid rgb(0, 80, 146);
     border-radius: 3px;
-    padding: 10px;
-}
-
-.color-red {
-    color: red;
-}
-
-.border-red {
-    border-color: red;
 }
 
 .buttonimage {
     display: none;
 }
 
-p {
-    font-style: italic;
-    white-space: pre-wrap;
+.pagetitle {
+    justify-content: space-between;
 }
 
+/* ---------------------------------------------------------------------- */
 /* Static part of the index page (title, toolbar for buttons and options) */
-#indexpageheader {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-#indexpagetitle {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-#notecount {
-    margin-right: 10px;
-}
+/* ---------------------------------------------------------------------- */
+
 #toolbarcontainer {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
     background: rgb(204, 220, 233);
-    padding: 10px;
     color: rgb(0, 80, 146);
-}
-#newbutton {
-    flex-direction: row;
 }
 
 input[type="radio"],
 #filtershowfinished {
-    position: absolute;
-    top: -20px;
+    display: none;
 }
 
 input[type="radio"] ~ span,
@@ -94,7 +53,6 @@ input[type="radio"] ~ span,
     border: 1px solid rgb(0, 80, 146);
     border-radius: 3px;
     cursor: pointer;
-    padding: 5px;
 }
 
 input[type="radio"]:checked ~ span,
@@ -103,75 +61,22 @@ input[type="radio"]:checked ~ span,
     color: white;
 }
 
+/* ---------------------------------------------- */
 /* Dynamic part of the index page (list of notes) */
-.notecontainer {
-    display: flex;
-    flex-direction: row;
-}
+/* ---------------------------------------------- */
+
 article {
-    padding: 10px;
     border-bottom: 1px solid rgb(204, 220, 233);
-}
-article:last-child {
-    border-bottom: none;
 }
 article:hover {
     background-color: rgb(204, 220, 233);
 }
-.notecolumnleft {
-    flex: 0 0 200px;
-}
-.notecolumnmiddle {
-    flex: 6;
-}
-.notecolumnright {
-    flex: 0 0 120px;
-    text-align: right;
-}
-.noteduedateabsolute {
-    font-weight: bold;
-}
-.noteduedaterelative,
-.notefinishdaterelative {
-    font-size: 0.7em;
-}
-.notesummary {
-    font-weight: bold;
-    cursor: pointer;
-}
 
+/* -------------------------- */
 /* Styles for the detail page */
-#detailpagetitle {
-    display: flex;
-    justify-content: flex-start;
-}
-
-form {
-    display: flex;
-    flex-direction: column;
-    padding: 10px;
-}
-.labelvaluepair {
-    display: flex;
-    flex-direction: row;
-    padding: 2px;
-}
-.labelitem {
-    flex: 1;
-}
-.valueitem {
-    flex: 4;
-}
-#description {
-    min-height: 100px;
-}
-.importancestar {
-    cursor: pointer;
-}
+/* -------------------------- */
 
 #detailbuttonbar {
-    display: flex;
     justify-content: flex-start;
     background: rgb(204, 220, 233);
-    padding: 10px;
 }
