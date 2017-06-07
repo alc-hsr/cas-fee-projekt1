@@ -9,25 +9,25 @@
         printSubTitle(true);
     }
     else {
-        $("#creationdatelabel").hide();
-        $("#creationdate").hide();
-        $("#finisheddatelabel").hide();
-        $("#finisheddate").hide();
+        $("#creationdate-label").hide();
+        $("#creationdate-field").hide();
+        $("#finisheddate-label").hide();
+        $("#finisheddate-field").hide();
         printSubTitle(false);
     }
 
     document.getElementById('savedetail').addEventListener('click', saveNote);
     document.getElementById('canceldetail').addEventListener('click', cancelDetailPage);
 
-    let importanceItem = $('#importanceitem');
-    importanceItem.on('click', '.importancestar', function(event) {
+    let importanceField = $('#importance-field');
+    importanceField.on('click', '.importance-star', function(event) {
         let importance = parseInt(event.target.getAttribute('data-importance'));
-        let importanceItem = $('#importanceitem');
-        let previousImportance = parseInt(importanceItem.val());
+        let importanceField = $('#importance-field');
+        let previousImportance = parseInt(importanceField.val());
         if (previousImportance === importance) {
             importance = 0;
         }
-        importanceItem.val(importance);
+        importanceField.val(importance);
         onImportanceAdjusted();
     });
 
@@ -75,23 +75,23 @@ function getCurrentNoteIdIfNoteExists() {
 
 function onImportanceAdjusted() {
     let importanceData = [];
-    let importance = $("#importanceitem").val();
+    let importance = $("#importance-field").val();
     for (let index = 1; index <= 5; index++) {
         importanceData.push({selected: index <= importance, importance: index});
     }
-    let createImportanceStarsHtml = Handlebars.compile(document.getElementById("importanceitemtemplate").innerHTML);
-    document.getElementById("importanceitem").innerHTML = createImportanceStarsHtml({importanceData: importanceData});
+    let createImportanceFieldHtml = Handlebars.compile(document.getElementById("importance-field-template").innerHTML);
+    document.getElementById("importance-field").innerHTML = createImportanceFieldHtml({importanceData: importanceData});
 }
 
 function loadNote(noteId) {
     let note = getNote(noteId);
     if (note !== null) {
-        $("#title").val(note.title);
-        $("#description").val(note.description);
-        $("#importanceitem").val(note.importance);
-        $("#duedate").val(note.dueDate);
-        $("#creationdate").val(note.creationDate);
-        $("#finisheddate").val(note.finishDate);
+        $("#title-field").val(note.title);
+        $("#description-field").val(note.description);
+        $("#importance-field").val(note.importance);
+        $("#duedate-field").val(note.dueDate);
+        $("#creationdate-field").val(note.creationDate);
+        $("#finisheddate-field").val(note.finishDate);
     }
 }
 
@@ -112,17 +112,17 @@ function cancelDetailPage() {
 }
 
 function saveNote() {
-    let dueDateField = $("#duedate");
+    let dueDateField = $("#duedate-field");
 
-    let title = $("#title").val();
-    let description = $("#description").val();
-    let importance = $("#importanceitem").val();
+    let title = $("#title-field").val();
+    let description = $("#description-field").val();
+    let importance = $("#importance-field").val();
     let dueDate = dueDateField.val();
 
     if (dueDate && !moment(dueDate).isValid()) {
-        dueDateField.toggleClass('border-red', true);
-        $('#duedatelabel').toggleClass('color-red', true);
-        $("#duedateinvalid").prop('hidden', false);
+        dueDateField.toggleClass('border--red', true);
+        $('#duedate-label').toggleClass('font--red', true);
+        $("#duedate-label-invalid").prop('hidden', false);
         return;
     }
 

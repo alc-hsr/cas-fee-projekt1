@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
     <head>
         <meta charset="UTF-8">
         <title>Note Detail</title>
@@ -9,58 +9,56 @@
     </head>
     <body>
         <header>
-            <div class="pagetitle">
-                <h1>Note Detail</h1>
-                <p id="notemode"></p>
-                <script id="notemodetemplate" type="text/x-handlebars-template">{{#if isEditMode}}Edit an existing note{{else}}Create a new note{{/if}}</script>
-            </div>
+            <h1>Note Detail</h1>
+            <p id="notemode"></p>
+            <script id="notemodetemplate" type="text/x-handlebars-template">{{#if isEditMode}}Edit an existing note{{else}}Create a new note{{/if}}</script>
         </header>
         <main>
             <form>
-                <div class="labelvaluepair">
-                    <label class="labelitem" for="title">Title:</label>
-                    <input class="valueitem" type="text" id="title">
+                <div class="label-field-pair">
+                    <label class="input-field-label" for="title-field">Title:</label>
+                    <input class="input-field" type="text" id="title-field">
                 </div>
-                <div class="labelvaluepair">
-                    <label class="labelitem" for="description">Description:</label>
-                    <textarea class="valueitem" id="description"></textarea>
+                <div class="label-field-pair">
+                    <label class="input-field-label" for="description-field">Description:</label>
+                    <textarea class="input-field" id="description-field"></textarea>
                 </div>
-                <div class="labelvaluepair">
-                    <label class="labelitem" for="importanceitem">Importance:</label>
-                    <div class="valueitem" id="importanceitem" data-value="0"></div>
-                    <script id="importanceitemtemplate" type="text/x-handlebars-template">
+                <div class="label-field-pair">
+                    <label class="input-field-label" for="importance-field">Importance:</label>
+                    <div class="input-field" id="importance-field" data-value="0"></div>
+                    <script id="importance-field-template" type="text/x-handlebars-template">
                         {{#each importanceData}}
                             {{#if selected}}
-                                <img class="importancestar" data-importance="{{importance}}" src="images/important_selected_24.png">
+                                <img class="importance-star cursor--pointer" data-importance="{{importance}}" src="images/important_selected_24.png">
                             {{else}}
-                                <img class="importancestar" data-importance="{{importance}}" src="images/important_deselected_24.png">
+                                <img class="importance-star cursor--pointer" data-importance="{{importance}}" src="images/important_deselected_24.png">
                             {{/if}}
                         {{/each}}
                     </script>
                 </div>
-                <div class="labelvaluepair">
-                    <label class="labelitem" for="duedate" id="duedatelabel">Due Date:</label>
-                    <div class="valueitem">
-                        <input type="date" id="duedate" placeholder="YYYY-MM-DD">
-                        <label class="color-red" id="duedateinvalid" hidden>Date is not valid!</label>
+                <div class="label-field-pair">
+                    <label class="input-field-label" id="duedate-label" for="duedate-field">Due Date:</label>
+                    <div class="input-field">
+                        <input type="date" id="duedate-field" placeholder="YYYY-MM-DD">
+                        <label class="font--red" id="duedate-label-invalid" hidden>Date is not valid!</label>
                     </div>
                 </div>
-                <div class="labelvaluepair">
-                    <label class="labelitem" for="creationdate" id="creationdatelabel">Creation Date:</label>
-                    <div class="valueitem">
-                        <input type="date" id="creationdate" disabled>
+                <div class="label-field-pair">
+                    <label class="input-field-label" id="creationdate-label" for="creationdate-field">Creation Date:</label>
+                    <div class="input-field">
+                        <input type="date" id="creationdate-field" disabled>
                     </div>
                 </div>
-                <div class="labelvaluepair">
-                    <label class="labelitem" for="finisheddate" id="finisheddatelabel">Finished Date:</label>
-                    <div class="valueitem">
-                        <input type="date" id="finisheddate" disabled>
+                <div class="label-field-pair">
+                    <label class="input-field-label" id="finisheddate-label" for="finisheddate-field">Finished Date:</label>
+                    <div class="input-field">
+                        <input type="date" id="finisheddate-field" disabled>
                     </div>
                 </div>
             </form>
-            <div id="detailbuttonbar">
-                <button id="savedetail"><img class="buttonimage" src="images/save.png">Save</button>
-                <button id="canceldetail" class="color-red"><img class="buttonimage" src="images/cancel.png">Cancel</button>
+            <div class="buttonbar-container">
+                <button class="cursor--pointer font--bold" id="savedetail"><img class="button-image" src="images/save.png">Save</button>
+                <button class="cursor--pointer font--red" id="canceldetail"><img class="button-image" src="images/cancel.png">Cancel</button>
             </div>
         </main>
         <footer><a href="https://www.hsr.ch"><img src="images/hsr.png"></a></footer>

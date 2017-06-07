@@ -2,24 +2,40 @@
 /* Common styles for index and detail page */
 /* --------------------------------------- */
 
+/* Some resets */
 * {
     padding: 0;
     margin: 0;
 }
 
-footer {
+header {
+    /* layout */
     display: flex;
+    align-items: center;
+
+    /* styles */
+    padding: 0.5em;
+}
+
+footer {
+    /* layout */
+    display: flex;
+
+    /* styles */
     padding: 0.5em;
 }
 
 button {
+    /* layout */
     display: inline-flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
+    /* styles */
     font-family: inherit;
     font-size: inherit;
-    cursor: pointer;
+
     margin: 0.1em;
     padding: 0.2em;
 }
@@ -34,30 +50,37 @@ label > input[type="checkbox"] ~ span {
     padding: 0.2em;
 }
 
-.pagetitle {
-    display: flex;
-    align-items: center;
-    padding: 0.5em;
+.font--bold {
+    font-weight: bold;
 }
-
-.color-red {
+.font--smaller {
+    font-size: 0.7em;
+}
+.font--red {
     color: red;
 }
 
-.border-red {
+.border--red {
     border-color: red;
+}
+
+.cursor--pointer {
+    cursor: pointer;
 }
 
 /* ---------------------------------------------------------------------- */
 /* Static part of the index page (title, toolbar for buttons and options) */
 /* ---------------------------------------------------------------------- */
 
-#toolbarcontainer {
+.toolbar-container {
+    /* layout */
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
     flex-wrap: wrap;
+
+    /* styles */
     padding: 0.5em;
 }
 
@@ -69,9 +92,22 @@ label > input[type="checkbox"] ~ span {
 /* Dynamic part of the index page (list of notes) */
 /* ---------------------------------------------- */
 
-.notecontainer {
+.note-container {
     display: flex;
     flex-direction: row;
+}
+
+.note-column-left {
+    flex: 0 0 200px;
+}
+
+.note-column-middle {
+    flex: 6;
+}
+
+.note-column-right {
+    flex: 0 0 120px;
+    text-align: right;
 }
 
 article {
@@ -81,67 +117,45 @@ article:last-child {
     border-bottom: none;
 }
 
-.notecolumnleft {
-    flex: 0 0 200px;
-}
-
-.notecolumnmiddle {
-    flex: 6;
-}
-
-.notecolumnright {
-    flex: 0 0 120px;
-    text-align: right;
-}
-
-.noteduedateabsolute {
-    font-weight: bold;
-}
-
-.noteduedaterelative,
-.notefinishdaterelative {
-    font-size: 0.7em;
-}
-
-.notesummary {
-    font-weight: bold;
-    cursor: pointer;
-}
-
 /* -------------------------- */
 /* Styles for the detail page */
 /* -------------------------- */
 
 form {
+    /* layout */
     display: flex;
     flex-direction: column;
-    padding: 10px;
+
+    /* styles */
     background: white;
+    padding: 10px;
 }
 
 textarea {
     min-height: 100px;
 }
 
-.labelvaluepair {
+.label-field-pair {
+    /* layout */
     display: flex;
     flex-direction: row;
+
+    /* styles */
     padding: 0.2em;
 }
 
-.labelitem {
+.input-field-label {
     flex: 1;
 }
 
-.valueitem {
+.input-field {
     flex: 4;
 }
 
-.importancestar {
-    cursor: pointer;
-}
-
-#detailbuttonbar {
+.buttonbar-container {
+    /* layout */
     display: flex;
+
+    /* styles */
     padding: 10px;
 }

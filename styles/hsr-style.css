@@ -10,12 +10,19 @@ body {
 }
 
 header {
+    /* layout */
+    justify-content: space-between;
+
+    /* styles */
     background: rgb(0, 80, 146);
     color: white;
 }
 
 footer {
+    /* layout */
     justify-content: flex-start;
+
+    /* styles */
     border-top: 1px solid rgb(0, 80, 146);
 }
 
@@ -26,19 +33,15 @@ button {
     border-radius: 3px;
 }
 
-.buttonimage {
+.button-image {
     display: none;
-}
-
-.pagetitle {
-    justify-content: space-between;
 }
 
 /* ---------------------------------------------------------------------- */
 /* Static part of the index page (title, toolbar for buttons and options) */
 /* ---------------------------------------------------------------------- */
 
-#toolbarcontainer {
+.toolbar-container {
     background: rgb(204, 220, 233);
     color: rgb(0, 80, 146);
 }
@@ -48,15 +51,14 @@ input[type="radio"],
     display: none;
 }
 
-input[type="radio"] ~ span,
-#filtershowfinished ~ span {
+input[type="radio"]~span,
+#filtershowfinished~span {
     border: 1px solid rgb(0, 80, 146);
     border-radius: 3px;
-    cursor: pointer;
 }
 
-input[type="radio"]:checked ~ span,
-#filtershowfinished:checked ~ span {
+input[type="radio"]:checked~span,
+#filtershowfinished:checked~span {
     background: rgb(0, 80, 146);
     color: white;
 }
@@ -76,7 +78,10 @@ article:hover {
 /* Styles for the detail page */
 /* -------------------------- */
 
-#detailbuttonbar {
+.buttonbar-container {
+    /* layout */
     justify-content: flex-start;
+
+    /* styles */
     background: rgb(204, 220, 233);
 }

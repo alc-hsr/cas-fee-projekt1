@@ -22,16 +22,16 @@
     document.getElementById('newbutton').addEventListener('click', createNewNote);
 
     // Init listeners for note actions
-    let noteContentElement = $('#notecontent');
-    noteContentElement.on('click', '.finishcheckbox', function(event) {
+    let noteListElement = $('#note-list');
+    noteListElement.on('click', '.finishcheckbox', function(event) {
         let noteId = event.target.getAttribute('data-noteid');
         let isAlreadyFinished = event.target.getAttribute('data-alreadyfinished');
         finishNote(noteId, (isAlreadyFinished == 'true'));
     });
-    noteContentElement.on('click', '.editbutton', function(event) {
+    noteListElement.on('click', '.editbutton', function(event) {
         showNoteDetails(event.target.getAttribute('data-noteid'));
     });
-    noteContentElement.on('click', '.deletebutton', function(event) {
+    noteListElement.on('click', '.deletebutton', function(event) {
         deleteNote(event.target.getAttribute('data-noteid'));
     });
 
@@ -110,8 +110,8 @@ function loadNotes(showFinished, sortOrder) {
     noteCounter.countDisplaying = filteredNotesContainer.notes.length;
 
     let sortedNotesContainer = sortNotes(filteredNotesContainer, sortOrder);
-    let createNotesHtml = Handlebars.compile(document.getElementById("notetemplate").innerHTML);
-    document.getElementById("notecontent").innerHTML = createNotesHtml(sortedNotesContainer);
+    let createNoteListHtml = Handlebars.compile(document.getElementById("note-list-template").innerHTML);
+    document.getElementById("note-list").innerHTML = createNoteListHtml(sortedNotesContainer);
 
     updateNoteCounter(noteCounter);
 }
@@ -133,8 +133,8 @@ function getNoteCounter(notesContainer) {
 }
 
 function updateNoteCounter(noteCounter) {
-    let createCounterHtml = Handlebars.compile(document.getElementById("notecounttemplate").innerHTML);
-    document.getElementById("notecount").innerHTML = createCounterHtml(noteCounter);
+    let createNoteCounterHtml = Handlebars.compile(document.getElementById("note-count-template").innerHTML);
+    document.getElementById("note-count").innerHTML = createNoteCounterHtml(noteCounter);
 }
 
 function filterNotes(originalNotesContainer, showFinished) {

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-    <head>
+    <head lang="en">
         <meta charset="UTF-8">
         <meta name="description" content="A simple notes application">
         <title>Notes Application</title>
@@ -10,22 +10,20 @@
     </head>
     <body>
         <header>
-            <div class="pagetitle">
-                <h1>Notes Application</h1>
-                <p id="notecount"></p>
-                <script id="notecounttemplate" type="text/x-handlebars-template">Displaying {{countDisplaying}} of {{countAll}} notes ({{countFinished}} notes are finished)</script>
-            </div>
+            <h1>Notes Application</h1>
+            <p id="note-count"></p>
+            <script id="note-count-template" type="text/x-handlebars-template">Displaying {{countDisplaying}} of {{countAll}} notes ({{countFinished}} notes are finished)</script>
         </header>
         <main>
-            <div id="toolbarcontainer">
-                <button id="newbutton"><img class="buttonimage" src="images/new.png">New Note</button>
+            <div class="toolbar-container">
+                <button class="cursor--pointer font--bold" id="newbutton"><img class="button-image" src="images/new.png">New Note</button>
                 <div>
                     <label>Sort by:</label>
-                    <label><input type="radio" id="sortByDueDate" name="sortorder" value="sortByDueDate"><span>Due date</span></label>
-                    <label><input type="radio" id="sortByCreationDate" name="sortorder" value="sortByCreationDate"><span>Creation date</span></label>
-                    <label><input type="radio" id="sortByImportance" name="sortorder" value="sortByImportance"><span>Importance</span></label>
+                    <label><input type="radio" id="sortByDueDate" name="sortorder" value="sortByDueDate"><span class="cursor--pointer">Due date</span></label>
+                    <label><input type="radio" id="sortByCreationDate" name="sortorder" value="sortByCreationDate"><span class="cursor--pointer">Creation date</span></label>
+                    <label><input type="radio" id="sortByImportance" name="sortorder" value="sortByImportance"><span class="cursor--pointer">Importance</span></label>
                 </div>
-                <label><input type="checkbox" id="filtershowfinished"><span>Show finished</span></label>
+                <label><input type="checkbox" id="filtershowfinished"><span class="cursor--pointer">Show finished</span></label>
                 <label>Style:
                     <select id="styleswitcher">
                         <option value="styles/authors-style.css">Author's Style</option>
@@ -33,37 +31,37 @@
                     </select>
                 </label>
             </div>
-            <div id="notecontent"></div>
-            <script id="notetemplate" type="text/x-handlebars-template">
+            <div id="note-list"></div>
+            <script id="note-list-template" type="text/x-handlebars-template">
                 {{#each notes}}
-                    <article class="notecontainer">
-                        <div class="notecolumnleft">
+                    <article class="note-container">
+                        <div class="note-column-left">
                             {{#if dueDate}}
-                                <time class="noteduedateabsolute" datetime="{{formatDateHelper dueDate 'YYYY-MM-DD'}}">{{formatDateHelper dueDate 'DD.MM.YYYY'}}</time>
-                                <time class="noteduedaterelative" datetime="{{formatDateHelper dueDate 'YYYY-MM-DD'}}">({{relativeDateHelper dueDate}})</time>
+                                <time class="font--bold" datetime="{{formatDateHelper dueDate 'YYYY-MM-DD'}}">{{formatDateHelper dueDate 'DD.MM.YYYY'}}</time>
+                                <time class="font--smaller" datetime="{{formatDateHelper dueDate 'YYYY-MM-DD'}}">({{relativeDateHelper dueDate}})</time>
                             {{else}}
-                                <label class="noteduedateabsolute">Anytime</label>
+                                <label class="font--bold">Anytime</label>
                             {{/if}}
                             <div>
                                 {{#if finishDate}}
-                                    <label><input type="checkbox" class="finishcheckbox" data-noteid="{{id}}" data-alreadyfinished="true" checked><span>Finished</span></label>
-                                    <time class="notefinishdaterelative" datetime="{{formatDateHelper finishDate 'YYYY-MM-DD'}}">(on {{formatDateHelper finishDate 'DD.MM.YYYY'}})</time>
+                                    <label><input type="checkbox" class="finishcheckbox" data-noteid="{{id}}" data-alreadyfinished="true" checked><span class="cursor--pointer">Finished</span></label>
+                                    <time class="font--smaller" datetime="{{formatDateHelper finishDate 'YYYY-MM-DD'}}">(on {{formatDateHelper finishDate 'DD.MM.YYYY'}})</time>
                                 {{else}}
-                                    <label><input type="checkbox" class="finishcheckbox" data-noteid="{{id}}" data-alreadyfinished="false"><span>Finish</span></label>
+                                    <label><input type="checkbox" class="finishcheckbox" data-noteid="{{id}}" data-alreadyfinished="false"><span class="cursor--pointer">Finish</span></label>
                                 {{/if}}
                             </div>
                         </div>
-                        <div class="notecolumnmiddle">
+                        <div class="note-column-middle">
                             <details>
-                                <summary class="notesummary">
+                                <summary class="font--bold cursor--pointer">
                                     {{title}} {{{importanceHelper importance}}}
                                 </summary>
                                 <p>{{description}}</p>
                             </details>
                         </div>
-                        <div class="notecolumnright">
-                            <button class="editbutton" data-noteid="{{id}}"><img class="buttonimage" src="images/edit.png" data-noteid="{{id}}">Edit</button>
-                            <button class="deletebutton color-red" data-noteid="{{id}}"><img class="buttonimage" src="images/delete.png" data-noteid="{{id}}">Delete</button>
+                        <div class="note-column-right">
+                            <button class="cursor--pointer font--bold editbutton" data-noteid="{{id}}"><img class="button-image" src="images/edit.png" data-noteid="{{id}}">Edit</button>
+                            <button class="cursor--pointer font--red deletebutton" data-noteid="{{id}}"><img class="button-image" src="images/delete.png" data-noteid="{{id}}">Delete</button>
                         </div>
                     </article>
                 {{else}}
