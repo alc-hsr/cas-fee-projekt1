@@ -1,11 +1,10 @@
 <!DOCTYPE html>
-<html>
-    <head lang="en">
+<html lang="en">
+    <head>
         <meta charset="UTF-8">
         <meta name="description" content="A simple notes application">
         <title>Notes Application</title>
-        <link rel="stylesheet" href="styles/authors-style.css" type="text/css" id="activestyle">
-        <link rel="alternate stylesheet" href="styles/hsr-style.css" type="text/css">
+        <link rel="stylesheet" href="styles/styles.css" type="text/css">
         <script src="scripts/styleswitcher.js"></script>
     </head>
     <body>
@@ -25,8 +24,8 @@
             <label><input type="checkbox" id="filtershowfinished"><span class="cursor--pointer">Show finished</span></label>
             <label>Style:
                 <select id="styleswitcher">
-                    <option value="styles/authors-style.css">Author's Style</option>
-                    <option value="styles/hsr-style.css">HSR Style</option>
+                    <option value="author">Author's Style</option>
+                    <option value="hsr">HSR Style</option>
                 </select>
             </label>
         </nav>
@@ -60,7 +59,7 @@
                     </details>
                     <div class="note-column-right">
                         <button class="cursor--pointer font--bold editbutton" data-noteid="{{id}}"><img class="button-image" src="images/edit.png" data-noteid="{{id}}">Edit</button>
-                        <button class="cursor--pointer font--red deletebutton" data-noteid="{{id}}"><img class="button-image" src="images/delete.png" data-noteid="{{id}}">Delete</button>
+                        <button class="cursor--pointer button--red deletebutton" data-noteid="{{id}}"><img class="button-image" src="images/delete.png" data-noteid="{{id}}">Delete</button>
                     </div>
                 </article>
             {{else}}

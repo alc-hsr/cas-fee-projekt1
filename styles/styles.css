@@ -1,0 +1,314 @@
+/* --------------------------------------- */
+/* Common styles for index and detail page */
+/* --------------------------------------- */
+
+/* Some resets */
+* {
+    padding: 0;
+    margin: 0;
+}
+
+.author body {
+    font-family: Calibri, Helvetica, sans-serif;
+    margin: 1em;
+    background: url('../images/background.png') repeat;
+}
+.hsr body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+}
+
+header {
+    /* layout */
+    display: flex;
+    align-items: center;
+
+    /* styles */
+    padding: 0.5em;
+}
+.author header {
+    /* layout */
+    flex-direction: column;
+
+    /* styles */
+    background: linear-gradient(to bottom, #9ae4ff, aliceblue);
+
+    border-top: 2px solid deepskyblue;
+    border-left: 2px solid deepskyblue;
+    border-right: 2px solid deepskyblue;
+
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+.hsr header {
+    /* layout */
+    flex-direction: row;
+    justify-content: space-between;
+
+    /* styles */
+    background: rgb(0, 80, 146);
+    color: white;
+}
+
+footer {
+    /* layout */
+    display: flex;
+    flex-direction: row;
+
+    /* styles */
+    padding: 0.5em;
+}
+.author footer {
+    /* layout */
+    justify-content: center;
+
+    /* styles */
+    background: linear-gradient(to top, #9ae4ff, aliceblue);
+
+    border-bottom: 2px solid deepskyblue;
+    border-left: 2px solid deepskyblue;
+    border-right: 2px solid deepskyblue;
+
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+.hsr footer {
+    /* layout */
+    justify-content: flex-start;
+
+    /* styles */
+    border-top: 1px solid rgb(0, 80, 146);
+}
+
+button {
+    /* layout */
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    /* styles */
+    font-family: inherit;
+    font-size: inherit;
+
+    margin: 0.1em;
+    padding: 0.2em;
+}
+.author button {
+    background: aliceblue;
+    border: 2px solid #9ae4ff;
+    border-radius: 10px;
+}
+.author .button--red {
+    color: red;
+}
+.hsr button {
+    background: rgb(0, 80, 146);
+    color: white;
+    border: 1px solid rgb(0, 80, 146);
+    border-radius: 3px;
+}
+.hsr .button--red {
+    color: red;
+}
+
+.hsr .button-image {
+    display: none;
+}
+
+.author button:hover {
+    background: #9ae4ff;
+    transition: 1s;
+}
+
+p {
+    font-style: italic;
+    white-space: pre-wrap;
+}
+
+label > input[type="radio"] ~ span,
+label > input[type="checkbox"] ~ span {
+    padding: 0.2em;
+}
+
+.font--bold {
+    font-weight: bold;
+}
+.font--smaller {
+    font-size: 0.7em;
+}
+.font--red {
+    color: red;
+}
+
+.border--red {
+    border-color: red;
+}
+
+.cursor--pointer {
+    cursor: pointer;
+}
+
+/* ---------------------------------------------------------------------- */
+/* Static part of the index page (title, toolbar for buttons and options) */
+/* ---------------------------------------------------------------------- */
+
+.toolbar-container {
+    /* layout */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+
+    /* styles */
+    padding: 0.5em;
+}
+.author .toolbar-container {
+    background: aliceblue;
+
+    border-left: 2px solid deepskyblue;
+    border-right: 2px solid deepskyblue;
+}
+.hsr .toolbar-container {
+    background: rgb(204, 220, 233);
+    color: rgb(0, 80, 146);
+}
+
+#newbutton {
+    flex-direction: row;
+}
+
+.hsr input[type="radio"],
+.hsr #filtershowfinished {
+    display: none;
+}
+
+.hsr input[type="radio"] ~ span,
+.hsr #filtershowfinished ~ span {
+    border: 1px solid rgb(0, 80, 146);
+    border-radius: 3px;
+}
+
+.hsr input[type="radio"]:checked ~ span,
+.hsr #filtershowfinished:checked ~ span {
+    background: rgb(0, 80, 146);
+    color: white;
+}
+
+/* ---------------------------------------------- */
+/* Dynamic part of the index page (list of notes) */
+/* ---------------------------------------------- */
+
+.note-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.note-column-left {
+    display: flex;
+    flex-direction: column;
+    flex: 0 0 12em;
+}
+
+.note-column-middle {
+    flex: auto;
+}
+
+.note-column-right {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: flex-start;
+}
+
+article {
+    padding: 0.5em;
+}
+.author article {
+    background: white;
+
+    border-bottom: 1px dashed #9ae4ff;
+    border-left: 2px solid deepskyblue;
+    border-right: 2px solid deepskyblue;
+}
+.hsr article {
+    border-bottom: 1px solid rgb(204, 220, 233);
+}
+
+article:last-child {
+    border-bottom: none;
+}
+
+.author article:hover {
+    background-color: aliceblue;
+    transition: 0.5s;
+}
+.hsr article:hover {
+    background-color: rgb(204, 220, 233);
+}
+
+/* -------------------------- */
+/* Styles for the detail page */
+/* -------------------------- */
+
+form {
+    /* layout */
+    display: flex;
+    flex-direction: column;
+
+    /* styles */
+    background: white;
+    padding: 10px;
+}
+.author form {
+    border-left: 2px solid deepskyblue;
+    border-right: 2px solid deepskyblue;
+}
+
+textarea {
+    min-height: 100px;
+}
+
+.label-field-pair {
+    /* layout */
+    display: flex;
+    flex-direction: row;
+
+    /* styles */
+    padding: 0.2em;
+}
+
+.input-field-label {
+    flex: 1;
+}
+
+.input-field {
+    flex: 4;
+}
+
+.buttonbar-container {
+    /* layout */
+    display: flex;
+    flex-direction: row;
+
+    /* styles */
+    padding: 10px;
+}
+.author .buttonbar-container {
+    /* layout */
+    justify-content: center;
+
+    /* styles */
+    background: white;
+
+    border-left: 2px solid deepskyblue;
+    border-right: 2px solid deepskyblue;
+}
+.hsr .buttonbar-container {
+    /* layout */
+    justify-content: flex-start;
+
+    /* styles */
+    background: rgb(204, 220, 233);
+}
