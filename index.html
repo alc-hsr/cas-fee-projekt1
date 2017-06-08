@@ -35,12 +35,14 @@
             {{#each notes}}
                 <article class="note-container">
                     <div class="note-column-left">
-                        {{#if dueDate}}
-                            <time class="font--bold" datetime="{{formatDateHelper dueDate 'YYYY-MM-DD'}}">{{formatDateHelper dueDate 'DD.MM.YYYY'}}</time>
-                            <time class="font--smaller" datetime="{{formatDateHelper dueDate 'YYYY-MM-DD'}}">({{relativeDateHelper dueDate}})</time>
-                        {{else}}
-                            <label class="font--bold">Anytime</label>
-                        {{/if}}
+                        <div>
+                            {{#if dueDate}}
+                                <time class="font--bold" datetime="{{formatDateHelper dueDate 'YYYY-MM-DD'}}">{{formatDateHelper dueDate 'DD.MM.YYYY'}}</time>
+                                <time class="font--smaller" datetime="{{formatDateHelper dueDate 'YYYY-MM-DD'}}">({{relativeDateHelper dueDate}})</time>
+                            {{else}}
+                                <label class="font--bold">Anytime</label>
+                            {{/if}}
+                        </div>
                         <div>
                             {{#if finishDate}}
                                 <label><input type="checkbox" class="finishcheckbox" data-noteid="{{id}}" data-alreadyfinished="true" checked><span class="cursor--pointer">Finished</span></label>
@@ -50,14 +52,12 @@
                             {{/if}}
                         </div>
                     </div>
-                    <div class="note-column-middle">
-                        <details>
-                            <summary class="font--bold cursor--pointer">
-                                {{title}} {{{importanceHelper importance}}}
-                            </summary>
-                            <p>{{description}}</p>
-                        </details>
-                    </div>
+                    <details class="note-column-middle">
+                        <summary class="font--bold cursor--pointer">
+                            {{title}} {{{importanceHelper importance}}}
+                        </summary>
+                        <p>{{description}}</p>
+                    </details>
                     <div class="note-column-right">
                         <button class="cursor--pointer font--bold editbutton" data-noteid="{{id}}"><img class="button-image" src="images/edit.png" data-noteid="{{id}}">Edit</button>
                         <button class="cursor--pointer font--red deletebutton" data-noteid="{{id}}"><img class="button-image" src="images/delete.png" data-noteid="{{id}}">Delete</button>

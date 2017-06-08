@@ -20,6 +20,7 @@ header {
 footer {
     /* layout */
     display: flex;
+    flex-direction: row;
 
     /* styles */
     padding: 0.5em;
@@ -98,16 +99,20 @@ label > input[type="checkbox"] ~ span {
 }
 
 .note-column-left {
-    flex: 0 0 200px;
+    display: flex;
+    flex-direction: column;
+    flex: 0 0 12em;
 }
 
 .note-column-middle {
-    flex: 6;
+    flex: auto;
 }
 
 .note-column-right {
-    flex: 0 0 120px;
-    text-align: right;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: flex-start;
 }
 
 article {
@@ -155,6 +160,7 @@ textarea {
 .buttonbar-container {
     /* layout */
     display: flex;
+    flex-direction: row;
 
     /* styles */
     padding: 10px;

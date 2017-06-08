@@ -11,6 +11,7 @@ body {
 
 header {
     /* layout */
+    flex-direction: row;
     justify-content: space-between;
 
     /* styles */
