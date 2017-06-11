@@ -5,7 +5,8 @@
         <meta name="description" content="A simple notes application">
         <title>Notes Application</title>
         <link rel="stylesheet" href="styles/styles.css" type="text/css">
-        <script src="scripts/styleswitcher.js"></script>
+        <script src="scripts/settingsStorage.js"></script>
+        <script src="scripts/styleSwitcherModule.js"></script>
     </head>
     <body>
         <header>
@@ -31,7 +32,7 @@
         </nav>
         <main id="note-list"></main>
         <script id="note-list-template" type="text/x-handlebars-template">
-            {{#each notes}}
+            {{#each this}}
                 <article class="note-container">
                     <div class="note-column-left">
                         <div>
@@ -43,9 +44,9 @@
                             {{/if}}
                         </div>
                         <div>
-                            {{#if finishDate}}
+                            {{#if finishedDate}}
                                 <label><input type="checkbox" class="finishcheckbox" data-noteid="{{id}}" data-alreadyfinished="true" checked><span class="cursor--pointer">Finished</span></label>
-                                <time class="font--smaller" datetime="{{formatDateHelper finishDate 'YYYY-MM-DD'}}">(on {{formatDateHelper finishDate 'DD.MM.YYYY'}})</time>
+                                <time class="font--smaller" datetime="{{formatDateHelper finishedDate 'YYYY-MM-DD'}}">(on {{formatDateHelper finishedDate 'DD.MM.YYYY'}})</time>
                             {{else}}
                                 <label><input type="checkbox" class="finishcheckbox" data-noteid="{{id}}" data-alreadyfinished="false"><span class="cursor--pointer">Finish</span></label>
                             {{/if}}
@@ -70,10 +71,8 @@
         <script src="libs/handlebars-v4.0.5.js"></script>
         <script src="libs/jquery-3.2.1.min.js"></script>
         <script src="libs/moment.js"></script>
-        <script src="scripts/common.js"></script>
-        <script src="scripts/sortoptions.js"></script>
-        <script src="scripts/filteroptions.js"></script>
-        <script src="scripts/helpers.js"></script>
-        <script src="scripts/index.js"></script>
+        <script src="scripts/noteStorage.js"></script>
+        <script src="scripts/handlebars.js"></script>
+        <script src="scripts/indexController.js"></script>
     </body>
 </html>

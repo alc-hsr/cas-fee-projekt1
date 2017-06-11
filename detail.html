@@ -4,13 +4,14 @@
         <meta charset="UTF-8">
         <title>Note Detail</title>
         <link rel="stylesheet" href="styles/styles.css" type="text/css">
-        <script src="scripts/styleswitcher.js"></script>
+        <script src="scripts/settingsStorage.js"></script>
+        <script src="scripts/styleSwitcherModule.js"></script>
     </head>
     <body>
         <header>
             <h1>Note Detail</h1>
-            <p id="notemode"></p>
-            <script id="notemodetemplate" type="text/x-handlebars-template">{{#if isEditMode}}Edit an existing note{{else}}Create a new note{{/if}}</script>
+            <p id="note-mode"></p>
+            <script id="note-mode-template" type="text/x-handlebars-template">{{#if isEditMode}}Edit an existing note{{else}}Create a new note{{/if}}</script>
         </header>
         <main>
             <form>
@@ -65,8 +66,8 @@
         <script src="libs/jquery-3.2.1.min.js"></script>
         <script src="libs/moment.js"></script>
         <script src="libs/modernizr-custom.js"></script>
-        <script src="scripts/common.js"></script>
-        <script src="scripts/helpers.js"></script>
-        <script src="scripts/detail.js"></script>
+        <script src="scripts/noteStorage.js"></script>
+        <script src="scripts/handlebars.js"></script>
+        <script src="scripts/detailController.js"></script>
     </body>
 </html>
