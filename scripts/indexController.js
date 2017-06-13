@@ -1,29 +1,20 @@
 'use strict';
 
-(function(noteModule, settingsModule, styleSwitcherModule) {
+let indexController = (function(indexView, noteModule, settingsModule, styleSwitcherModule) {
 
     window.onload = function() {
-        HandlebarsModule.registerHelpers();
+        indexView.registerHelpers();
+        indexView.selectStyle(settingsModule.getActiveStyle());
+        indexView.selectSortOrder(settingsModule.getActiveSortOrder());
+        indexView.selectShowFinished(settingsModule.isShowFinished());
 
-        // Init style switcher
-        let styleSwitcherElement = $('#styleswitcher');
-        styleSwitcherElement.val(settingsModule.getActiveStyle());
-        styleSwitcherElement.on('change', onStyleChanged);
-
-        // Init sort options
-        let activeSortOrder = settingsModule.getActiveSortOrder();
-        $('#' + activeSortOrder).prop('checked', true);
+        $('#styleswitcher').on('change', onStyleChanged);
         $('#sortByDueDate').on('click', onSortOrderChanged);
         $('#sortByCreationDate').on('click', onSortOrderChanged);
         $('#sortByImportance').on('click', onSortOrderChanged);
-
-        // Init filter
-        let showFinishedCheckbox = $('#filtershowfinished');
-        showFinishedCheckbox.prop('checked', settingsModule.isShowFinished());
-        showFinishedCheckbox.on('click', onShowFinishedFilterClicked);
-
-        // Init listeners for note actions
+        $('#filtershowfinished').on('click', onShowFinishedFilterClicked);
         $('#newbutton').on('click', onCreateNewNote);
+
         let noteListElement = $('#note-list');
         noteListElement.on('click', '.editbutton', onShowNoteDetails);
         noteListElement.on('click', '.deletebutton', onDeleteNote);
@@ -33,20 +24,18 @@
     };
 
     function onStyleChanged() {
-        let selectedStyle = $('#styleswitcher').val();
+        let selectedStyle = indexView.getSelectedStyle();
         styleSwitcherModule.activateStyle(selectedStyle);
         settingsModule.setActiveStyle(selectedStyle);
     }
 
     function onSortOrderChanged() {
-        let sortOrder = $('input[name=sortorder]:checked').val();
-        settingsModule.setActiveSortOrder(sortOrder);
+        settingsModule.setActiveSortOrder(indexView.getSelectedSortOrder());
         loadNotes();
     }
 
     function onShowFinishedFilterClicked() {
-        let isShowFinished = $('#filtershowfinished').is(':checked');
-        settingsModule.setShowFinished(isShowFinished);
+        settingsModule.setShowFinished(indexView.isShowFinishedSelected());
         loadNotes();
     }
 
@@ -73,13 +62,11 @@
     function loadNotes() {
         let notes = noteModule.getNotes(settingsModule.isShowFinished());
         let sortedNotes = sortNotes(notes, settingsModule.getActiveSortOrder());
-        let createNoteListHtml = Handlebars.compile(document.getElementById('note-list-template').innerHTML);
-        document.getElementById('note-list').innerHTML = createNoteListHtml(sortedNotes);
+        indexView.renderNotes(sortedNotes);
 
         let noteCounter = noteModule.getNoteCounter();
         noteCounter.countDisplaying = sortedNotes.length;
-        let createNoteCounterHtml = Handlebars.compile(document.getElementById('note-count-template').innerHTML);
-        document.getElementById('note-count').innerHTML = createNoteCounterHtml(noteCounter);
+        indexView.renderNoteCounter(noteCounter);
     }
 
     function sortNotes(theNotes, theSortOrder) {
@@ -128,4 +115,4 @@
         }
         return 0;
     }
-})(NoteModule, SettingsModule, StyleSwitcherModule);
+})(indexView, noteModule, settingsModule, styleSwitcherModule);

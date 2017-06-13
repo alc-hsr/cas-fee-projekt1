@@ -1,6 +1,6 @@
 'use strict';
 
-let StyleSwitcherModule = (function(settingsModule) {
+let styleSwitcherModule = (function(settingsModule) {
 
     // Immediately set active style when loading this module to make sure that the style is loaded as soon as
     // possible to avoid a 'style flickering' when loading the side. Therefore, this file should be loaded
@@ -22,4 +22,4 @@ let StyleSwitcherModule = (function(settingsModule) {
     return {
         activateStyle
     };
-})(SettingsModule);
+})(settingsModule);

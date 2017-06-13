@@ -11,7 +11,7 @@
         <header>
             <h1>Note Detail</h1>
             <p id="note-mode"></p>
-            <script id="note-mode-template" type="text/x-handlebars-template">{{#if isEditMode}}Edit an existing note{{else}}Create a new note{{/if}}</script>
+            <script id="note-mode-template" type="text/x-handlebars-template">{{#if isEditMode}}Editing an existing note{{else}}Creating a new note{{/if}}</script>
         </header>
         <main>
             <form>
@@ -68,6 +68,7 @@
         <script src="libs/modernizr-custom.js"></script>
         <script src="scripts/noteStorage.js"></script>
         <script src="scripts/handlebars.js"></script>
+        <script src="scripts/detailView.js"></script>
         <script src="scripts/detailController.js"></script>
     </body>
 </html>

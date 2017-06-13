@@ -1,6 +1,6 @@
 'use strict';
 
-let HandlebarsModule = (function() {
+let handlebarsModule = (function() {
 
     function registerHelpers() {
         /*

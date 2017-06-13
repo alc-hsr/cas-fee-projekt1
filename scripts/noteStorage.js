@@ -2,23 +2,79 @@
 
 class Note {
     constructor() {
-        this.id = undefined;
-        this.title = undefined;
-        this.description = undefined;
-        this.importance = 0;
-        this.creationDate = moment().format('YYYY-MM-DD');
-        this.dueDate = undefined;
-        this.finishedDate = undefined;
+        this._id = undefined;
+        this._title = undefined;
+        this._description = undefined;
+        this._importance = 0;
+        this._creationDate = moment().format('YYYY-MM-DD');
+        this._dueDate = undefined;
+        this._finishedDate = undefined;
     }
 
-    static mergeNote(theFromNote, theToNote) {
-        theToNote.id = theFromNote.id;
-        theToNote.title = theFromNote.title;
-        theToNote.description = theFromNote.description;
-        theToNote.importance = theFromNote.importance;
-        theToNote.creationDate = theFromNote.creationDate;
-        theToNote.dueDate = theFromNote.dueDate;
-        theToNote.finishedDate = theFromNote.finishedDate;
+    static of(theNote) {
+        let note = new Note();
+        note.mergeNote(theNote);
+        return note;
+    }
+
+    mergeNote(theNote) {
+        return Object.assign(this, theNote);
+    }
+
+    get id() {
+        return this._id;
+    }
+
+    set id(theId) {
+        this._id = theId;
+    }
+
+    get title() {
+        return this._title;
+    }
+
+    set title(theTitle) {
+        this._title = theTitle;
+    }
+
+    get description() {
+        return this._description;
+    }
+
+    set description(theDescription) {
+        this._description = theDescription;
+    }
+
+    get importance() {
+        return this._importance;
+    }
+
+    set importance(theImportance) {
+        this._importance = theImportance;
+    }
+
+    get creationDate() {
+        return this._creationDate;
+    }
+
+    set creationDate(theCreationDate) {
+        this._creationDate = theCreationDate;
+    }
+
+    get dueDate() {
+        return this._dueDate;
+    }
+
+    set dueDate(theDueDate) {
+        this._dueDate = theDueDate;
+    }
+
+    get finishedDate() {
+        return this._finishedDate;
+    }
+
+    set finishedDate(theFinishedDate) {
+        this._finishedDate = theFinishedDate;
     }
 }
 
@@ -29,52 +85,58 @@ class NoteCounter {
         this._countDisplaying = 0;
     }
 
-    get countAll() {
-        return this._countAll;
-    }
-
-    set countAll(countAll) {
-        this._countAll = countAll;
-    }
-
     incrementCountAll() {
         this._countAll++;
-    }
-
-    get countFinished() {
-        return this._countFinished;
-    }
-
-    set countFinished(countFinished) {
-        this._countFinished = countFinished;
     }
 
     incrementCountFinished() {
         this._countFinished++;
     }
 
+    incrementCountDisplaying() {
+        this._countDisplaying++;
+    }
+
+    get countAll() {
+        return this._countAll;
+    }
+
+    set countAll(theCountAll) {
+        this._countAll = theCountAll;
+    }
+
+    get countFinished() {
+        return this._countFinished;
+    }
+
+    set countFinished(theCountFinished) {
+        this._countFinished = theCountFinished;
+    }
+
     get countDisplaying() {
         return this._countDisplaying;
     }
 
-    set countDisplaying(countDisplaying) {
-        this._countDisplaying = countDisplaying;
-    }
-
-    incrementCountDisplaying() {
-        this._countDisplaying++;
+    set countDisplaying(theCountDisplaying) {
+        this._countDisplaying = theCountDisplaying;
     }
 }
 
-let NoteModule = (function() {
+let noteModule = (function() {
+
+    const NOTES_PROPERTY = 'notes';
 
     function getAllNotesFromStorage() {
-        let notes = localStorage.getItem('notes');
+        let notes = localStorage.getItem(NOTES_PROPERTY);
         if (!notes) {
-            localStorage.setItem('notes', JSON.stringify([]));
-            notes = localStorage.getItem('notes');
+            localStorage.setItem(NOTES_PROPERTY, JSON.stringify([]));
+            notes = localStorage.getItem(NOTES_PROPERTY);
         }
-        return JSON.parse(notes);
+        return JSON.parse(notes).map(note => Note.of(note));
+    }
+
+    function saveNotesToStorage(theNotes) {
+        localStorage.setItem(NOTES_PROPERTY, JSON.stringify(theNotes));
     }
 
     function getNextNoteId() {
@@ -130,7 +192,7 @@ let NoteModule = (function() {
         for (let index = 0; index < notes.length; index++) {
             if (notes[index].id === theNoteId) {
                 notes.splice(index, 1);
-                localStorage.setItem('notes', JSON.stringify(notes));
+                saveNotesToStorage(notes);
                 break;
             }
         }
@@ -145,8 +207,8 @@ let NoteModule = (function() {
         if (theNote.id) {
             for (let note of notes) {
                 if (note.id === theNote.id) {
-                    Note.mergeNote(theNote, note);
-                    localStorage.setItem('notes', JSON.stringify(notes));
+                    note.mergeNote(theNote);
+                    saveNotesToStorage(notes);
                     break;
                 }
             }
@@ -154,7 +216,7 @@ let NoteModule = (function() {
         else {
             theNote.id = getNextNoteId();
             notes.push(theNote);
-            localStorage.setItem('notes', JSON.stringify(notes));
+            saveNotesToStorage(notes);
         }
 
         return true;
@@ -171,7 +233,7 @@ let NoteModule = (function() {
                 else {
                     note.finishedDate = moment().format('YYYY-MM-DD');
                 }
-                localStorage.setItem('notes', JSON.stringify(notes));
+                saveNotesToStorage(notes);
                 break;
             }
         }
