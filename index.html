@@ -33,7 +33,7 @@
         <main id="note-list"></main>
         <script id="note-list-template" type="text/x-handlebars-template">
             {{#each this}}
-                <article class="note-container">
+                <article class="note-container" data-noteid="{{id}}">
                     <div class="note-column-left">
                         <div>
                             {{#if dueDate}}

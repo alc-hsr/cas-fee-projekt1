@@ -9,6 +9,8 @@ let indexView = (function(handlebarsModule) {
     function renderNotes(notes) {
         let createNoteListHtml = Handlebars.compile($('#note-list-template').html());
         $('#note-list').html(createNoteListHtml(notes));
+
+        markFinishedNotes(notes.filter(note => note.finishedDate));
     }
 
     function renderNoteCounter(noteCounter) {
@@ -38,6 +40,17 @@ let indexView = (function(handlebarsModule) {
 
     function isShowFinishedSelected() {
         return $('#filtershowfinished').is(':checked');
+    }
+
+    function markFinishedNotes(theFinishedNotes) {
+        let finishedNoteIds = theFinishedNotes.map(note => note.id);
+        let noteContainerElements = [... $('.note-container')];
+        noteContainerElements.forEach(noteContainerElement => {
+            let noteId = parseInt(noteContainerElement.getAttribute('data-noteid'));
+            if (finishedNoteIds.includes(noteId)) {
+                noteContainerElement.classList.add('note--finished');
+            }
+        });
     }
 
     return {

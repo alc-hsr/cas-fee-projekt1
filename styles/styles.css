@@ -96,7 +96,7 @@ button {
 }
 .author button {
     background: aliceblue;
-    border: 2px solid #9ae4ff;
+    border: 2px solid deepskyblue;
     border-radius: 10px;
 }
 .author .button--red {
@@ -246,6 +246,14 @@ article:last-child {
 }
 .hsr article:hover {
     background-color: rgb(204, 220, 233);
+}
+
+.hsr .note--finished {
+    color: darkgrey;
+}
+
+.author .note--finished {
+    color: deepskyblue;
 }
 
 /* -------------------------- */
