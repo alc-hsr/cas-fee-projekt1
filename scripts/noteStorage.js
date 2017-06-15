@@ -47,22 +47,9 @@ let noteModule = (function() {
         localStorage.setItem(NOTES_PROPERTY, JSON.stringify(theNotes));
     }
 
-    function getNextNoteId() {
-        let notes = getAllNotesFromStorage();
-        let nextNoteId = 1;
-        while (isExistingId(nextNoteId, notes)) {
-            nextNoteId++;
-        }
-        return nextNoteId;
-    }
-
-    function isExistingId(theId, theNotes) {
-        for (let note of theNotes) {
-            if (note.id === theId) {
-                return true;
-            }
-        }
-        return false;
+    function getNextNoteId(theNotes) {
+        let maxId = Math.max(... theNotes.map(note => note.id));
+        return isFinite(maxId) ? (maxId + 1) : 1;
     }
 
     function getNoteCounter() {
@@ -122,7 +109,7 @@ let noteModule = (function() {
             }
         }
         else {
-            theNote.id = getNextNoteId();
+            theNote.id = getNextNoteId(notes);
             notes.push(theNote);
             saveNotesToStorage(notes);
         }
