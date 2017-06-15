@@ -2,13 +2,13 @@
 
 class Note {
     constructor() {
-        this._id = undefined;
-        this._title = undefined;
-        this._description = undefined;
-        this._importance = 0;
-        this._creationDate = moment().format('YYYY-MM-DD');
-        this._dueDate = undefined;
-        this._finishedDate = undefined;
+        this.id = undefined;
+        this.title = undefined;
+        this.description = undefined;
+        this.importance = 0;
+        this.creationDate = moment().format('YYYY-MM-DD');
+        this.dueDate = undefined;
+        this.finishedDate = undefined;
     }
 
     static of(theNote) {
@@ -20,105 +20,13 @@ class Note {
     mergeNote(theNote) {
         return Object.assign(this, theNote);
     }
-
-    get id() {
-        return this._id;
-    }
-
-    set id(theId) {
-        this._id = theId;
-    }
-
-    get title() {
-        return this._title;
-    }
-
-    set title(theTitle) {
-        this._title = theTitle;
-    }
-
-    get description() {
-        return this._description;
-    }
-
-    set description(theDescription) {
-        this._description = theDescription;
-    }
-
-    get importance() {
-        return this._importance;
-    }
-
-    set importance(theImportance) {
-        this._importance = theImportance;
-    }
-
-    get creationDate() {
-        return this._creationDate;
-    }
-
-    set creationDate(theCreationDate) {
-        this._creationDate = theCreationDate;
-    }
-
-    get dueDate() {
-        return this._dueDate;
-    }
-
-    set dueDate(theDueDate) {
-        this._dueDate = theDueDate;
-    }
-
-    get finishedDate() {
-        return this._finishedDate;
-    }
-
-    set finishedDate(theFinishedDate) {
-        this._finishedDate = theFinishedDate;
-    }
 }
 
 class NoteCounter {
     constructor() {
-        this._countAll = 0;
-        this._countFinished = 0;
-        this._countDisplaying = 0;
-    }
-
-    incrementCountAll() {
-        this._countAll++;
-    }
-
-    incrementCountFinished() {
-        this._countFinished++;
-    }
-
-    incrementCountDisplaying() {
-        this._countDisplaying++;
-    }
-
-    get countAll() {
-        return this._countAll;
-    }
-
-    set countAll(theCountAll) {
-        this._countAll = theCountAll;
-    }
-
-    get countFinished() {
-        return this._countFinished;
-    }
-
-    set countFinished(theCountFinished) {
-        this._countFinished = theCountFinished;
-    }
-
-    get countDisplaying() {
-        return this._countDisplaying;
-    }
-
-    set countDisplaying(theCountDisplaying) {
-        this._countDisplaying = theCountDisplaying;
+        this.countAll = 0;
+        this.countFinished = 0;
+        this.countDisplaying = 0;
     }
 }
 
@@ -160,9 +68,9 @@ let noteModule = (function() {
     function getNoteCounter() {
         let noteCounter = new NoteCounter();
         for (let note of getAllNotesFromStorage()) {
-            noteCounter.incrementCountAll();
+            noteCounter.countAll++;
             if (note.finishedDate) {
-                noteCounter.incrementCountFinished();
+                noteCounter.countFinished++;
             }
         }
         return noteCounter;

@@ -82,7 +82,7 @@ let detailController = (function(detailView, noteModule) {
 
     function onImportanceStarClicked(event) {
         let clickedImportance = parseInt(event.target.getAttribute('data-importance'));
-        let previousImportance = parseInt(detailView.getImportance());
+        let previousImportance = detailView.getImportance();
         if (previousImportance === clickedImportance) {
             clickedImportance = 0;
         }

@@ -21,19 +21,23 @@ let detailView = (function(handlebarsModule) {
     }
 
     function getTitle() {
-        return $('#title-field').val();
+        let title = $('#title-field').val();
+        return title ? title : undefined;
     }
 
     function getDescription() {
-        return $('#description-field').val();
+        let description = $('#description-field').val();
+        return description ? description : undefined;
     }
 
     function getDueDate() {
-        return $('#duedate-field').val();
+        let dueDate = $('#duedate-field').val();
+        return dueDate ? dueDate : undefined;
     }
 
     function getImportance() {
-        return $('#importance-field').val();
+        let importance = $('#importance-field').val();
+        return importance ? parseInt(importance) : 0;
     }
 
     function setImportance(theImportance) {

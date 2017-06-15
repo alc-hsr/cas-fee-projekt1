@@ -117,7 +117,7 @@ button {
 }
 
 .author button:hover {
-    background: #9ae4ff;
+    background: deepskyblue;
     transition: 1s;
 }
 
@@ -275,6 +275,7 @@ form {
 }
 
 textarea {
+    font-family: inherit;
     min-height: 100px;
 }
 
