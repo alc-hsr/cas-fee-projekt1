@@ -1,10 +1,6 @@
 'use strict';
 
-let detailView = (function(handlebarsModule) {
-
-    function registerHelpers() {
-        handlebarsModule.registerHelpers();
-    }
+let detailView = (function() {
 
     function loadNote(theNote) {
         $('#title-field').val(theNote.title);
@@ -68,7 +64,6 @@ let detailView = (function(handlebarsModule) {
     }
 
     return {
-        registerHelpers,
         loadNote,
         renderSubTitle,
         getTitle,
@@ -80,4 +75,4 @@ let detailView = (function(handlebarsModule) {
         hideImmutableFields,
         markInvalidFields
     };
-})(handlebarsModule);
+})();

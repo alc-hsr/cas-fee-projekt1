@@ -4,9 +4,7 @@ let detailController = (function(detailView, noteModule) {
 
     let currentNote;
 
-    window.onload = function() {
-        detailView.registerHelpers();
-
+    document.addEventListener('DOMContentLoaded', () => {
         currentNote = getCurrentNote();
         if (currentNote.id) {
             detailView.loadNote(currentNote);
@@ -22,7 +20,7 @@ let detailController = (function(detailView, noteModule) {
         $('#savedetail').on('click', onSaveNote);
         $('#canceldetail').on('click', onCancelDetailPage);
         $('#importance-field').on('click', '.importance-star', onImportanceStarClicked);
-    };
+    });
 
     function getCurrentNote() {
         let idParameter;

@@ -1,10 +1,6 @@
 'use strict';
 
-let indexView = (function(handlebarsModule) {
-
-    function registerHelpers() {
-        handlebarsModule.registerHelpers();
-    }
+let indexView = (function() {
 
     function renderNotes(notes) {
         let createNoteListHtml = Handlebars.compile($('#note-list-template').html());
@@ -54,7 +50,6 @@ let indexView = (function(handlebarsModule) {
     }
 
     return {
-        registerHelpers,
         renderNotes,
         renderNoteCounter,
         selectStyle,
@@ -64,4 +59,4 @@ let indexView = (function(handlebarsModule) {
         getSelectedSortOrder,
         isShowFinishedSelected
     };
-})(handlebarsModule);
+})();

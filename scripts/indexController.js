@@ -1,9 +1,8 @@
 'use strict';
 
-let indexController = (function(indexView, noteModule, settingsModule, styleSwitcherModule) {
+(function(indexView, noteModule, settingsModule, styleSwitcherModule) {
 
-    window.onload = function() {
-        indexView.registerHelpers();
+    document.addEventListener('DOMContentLoaded', () => {
         indexView.selectStyle(settingsModule.getActiveStyle());
         indexView.selectSortOrder(settingsModule.getActiveSortOrder());
         indexView.selectShowFinished(settingsModule.isShowFinished());
@@ -21,7 +20,7 @@ let indexController = (function(indexView, noteModule, settingsModule, styleSwit
         noteListElement.on('click', '.finishcheckbox', onFinishNote);
 
         loadNotes();
-    };
+    });
 
     function onStyleChanged() {
         let selectedStyle = indexView.getSelectedStyle();

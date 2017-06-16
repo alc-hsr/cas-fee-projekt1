@@ -1,8 +1,8 @@
 'use strict';
 
-let handlebarsModule = (function() {
+(function() {
 
-    function registerHelpers() {
+    document.addEventListener('DOMContentLoaded', () => {
         /*
          * 'importanceHelper' is responsible to print as many star images as the 'importance'
          * of the note is.
@@ -49,9 +49,5 @@ let handlebarsModule = (function() {
                 return date;
             }
         });
-    }
-
-    return {
-        registerHelpers
-    }
+    });
 })();
