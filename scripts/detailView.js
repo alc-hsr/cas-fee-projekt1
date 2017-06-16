@@ -2,6 +2,14 @@
 
 let detailView = (function() {
 
+    let createNoteModeHtml;
+    let createImportanceFieldHtml;
+
+    document.addEventListener('DOMContentLoaded', () => {
+        createNoteModeHtml = Handlebars.compile($('#note-mode-template').html());
+        createImportanceFieldHtml = Handlebars.compile($('#importance-field-template').html());
+    });
+
     function loadNote(theNote) {
         $('#title-field').val(theNote.title);
         $('#description-field').val(theNote.description);
@@ -12,7 +20,6 @@ let detailView = (function() {
     }
 
     function renderSubTitle(theEditMode) {
-        let createNoteModeHtml = Handlebars.compile($('#note-mode-template').html());
         $('#note-mode').html(createNoteModeHtml({isEditMode: theEditMode}));
     }
 
@@ -46,7 +53,6 @@ let detailView = (function() {
         for (let index = 1; index <= 5; index++) {
             importanceData.push({selected: index <= importance, importance: index});
         }
-        let createImportanceFieldHtml = Handlebars.compile($('#importance-field-template').html());
         $('#importance-field').html(createImportanceFieldHtml({importanceData: importanceData}));
     }
 

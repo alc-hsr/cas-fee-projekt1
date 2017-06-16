@@ -2,15 +2,20 @@
 
 let indexView = (function() {
 
-    function renderNotes(notes) {
-        let createNoteListHtml = Handlebars.compile($('#note-list-template').html());
-        $('#note-list').html(createNoteListHtml(notes));
+    let createNoteListHtml;
+    let createNoteCounterHtml;
 
+    document.addEventListener('DOMContentLoaded', () => {
+        createNoteListHtml = Handlebars.compile($('#note-list-template').html());
+        createNoteCounterHtml = Handlebars.compile($('#note-count-template').html());
+    });
+
+    function renderNotes(notes) {
+        $('#note-list').html(createNoteListHtml(notes));
         markFinishedNotes(notes.filter(note => note.finishedDate));
     }
 
     function renderNoteCounter(noteCounter) {
-        let createNoteCounterHtml = Handlebars.compile($('#note-count-template').html());
         $('#note-count').html(createNoteCounterHtml(noteCounter));
     }
 
