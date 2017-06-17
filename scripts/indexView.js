@@ -10,13 +10,13 @@ let indexView = (function() {
         createNoteCounterHtml = Handlebars.compile($('#note-count-template').html());
     });
 
-    function renderNotes(notes) {
-        $('#note-list').html(createNoteListHtml(notes));
-        markFinishedNotes(notes.filter(note => note.finishedDate));
+    function renderNotes(theNotes) {
+        $('#note-list').html(createNoteListHtml(theNotes));
+        markFinishedNotes(theNotes.filter(note => note.finishedDate));
     }
 
-    function renderNoteCounter(noteCounter) {
-        $('#note-count').html(createNoteCounterHtml(noteCounter));
+    function renderNoteCounter(theNoteCounter) {
+        $('#note-count').html(createNoteCounterHtml(theNoteCounter));
     }
 
     function selectStyle(theStyle) {

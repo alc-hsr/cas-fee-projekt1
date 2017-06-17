@@ -119,18 +119,10 @@ let noteModule = (function() {
 
     function finishNote(theNoteId, theAlreadyFinished) {
         theNoteId = parseInt(theNoteId);
-        let notes = getAllNotesFromStorage();
-        for (let note of notes) {
-            if (note.id === theNoteId) {
-                if (theAlreadyFinished) {
-                    note.finishedDate = undefined;
-                }
-                else {
-                    note.finishedDate = moment().format('YYYY-MM-DD');
-                }
-                saveNotesToStorage(notes);
-                break;
-            }
+        let note = getNote(theNoteId);
+        if (note) {
+            note.finishedDate = theAlreadyFinished ? undefined : moment().format('YYYY-MM-DD');
+            saveNote(note);
         }
     }
 

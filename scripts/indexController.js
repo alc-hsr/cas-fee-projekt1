@@ -42,18 +42,18 @@
         location.href = 'detail.html';
     }
 
-    function onShowNoteDetails(event) {
-        location.href = 'detail.html?id=' + event.target.getAttribute('data-noteid');
+    function onShowNoteDetails(theEvent) {
+        location.href = 'detail.html?id=' + theEvent.target.getAttribute('data-noteid');
     }
 
-    function onDeleteNote(event) {
-        noteModule.deleteNote(event.target.getAttribute('data-noteid'));
+    function onDeleteNote(theEvent) {
+        noteModule.deleteNote(theEvent.target.getAttribute('data-noteid'));
         loadNotes();
     }
 
-    function onFinishNote(event) {
-        let noteId = event.target.getAttribute('data-noteid');
-        let isAlreadyFinished = event.target.getAttribute('data-alreadyfinished');
+    function onFinishNote(theEvent) {
+        let noteId = theEvent.target.getAttribute('data-noteid');
+        let isAlreadyFinished = theEvent.target.getAttribute('data-alreadyfinished');
         noteModule.finishNote(noteId, (isAlreadyFinished == 'true'));
         loadNotes();
     }
