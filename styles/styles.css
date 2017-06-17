@@ -256,6 +256,21 @@ article:last-child {
     color: deepskyblue;
 }
 
+.author details[open] p {
+    animation-name: increasing-font-size;
+    animation-duration: 500ms;
+    animation-delay: 0ms;
+}
+
+@keyframes increasing-font-size {
+    0% {
+        font-size: 0;
+    }
+    100% {
+        font-size: 1em;
+    }
+}
+
 /* -------------------------- */
 /* Styles for the detail page */
 /* -------------------------- */
