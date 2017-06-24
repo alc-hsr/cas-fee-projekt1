@@ -1,6 +1,6 @@
 'use strict';
 
-let settingsModule = (function() {
+const settingsModule = (function() {
 
     const ACTIVE_STYLE_PROPERTY = 'activeStyle';
     const ACTIVE_SORT_ORDER_PROPERTY = 'activeSortOrder';

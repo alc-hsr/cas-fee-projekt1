@@ -1,0 +1,13 @@
+{
+  "name": "note-application",
+  "version": "1.0.0",
+  "description": "This is the server of the note application.",
+  "main": "server.js",
+  "author": "Christian Albiez",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "express": "^4.15.3",
+    "moment": "^2.18.1"
+  }
+}

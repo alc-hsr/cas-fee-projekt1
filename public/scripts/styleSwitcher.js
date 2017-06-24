@@ -1,6 +1,6 @@
 'use strict';
 
-let styleSwitcherModule = (function(settingsModule) {
+const styleSwitcherModule = (function(settingsModule) {
 
     const AUTHORS_STYLE = 'author';
     const HSR_STYLE = 'hsr';

@@ -2,6 +2,8 @@
 
 (function(indexView, noteModule, settingsModule, styleSwitcherModule) {
 
+    let loadedNotes;
+
     document.addEventListener('DOMContentLoaded', () => {
         indexView.selectStyle(settingsModule.getActiveStyle());
         indexView.selectSortOrder(settingsModule.getActiveSortOrder());
@@ -30,7 +32,7 @@
 
     function onSortOrderChanged() {
         settingsModule.setActiveSortOrder(indexView.getSelectedSortOrder());
-        loadNotes();
+        sortAndRenderNotes();
     }
 
     function onShowFinishedFilterClicked() {
@@ -47,25 +49,43 @@
     }
 
     function onDeleteNote(theEvent) {
-        noteModule.deleteNote(theEvent.target.getAttribute('data-noteid'));
-        loadNotes();
+        let deleteRequest = noteModule.deleteNote(theEvent.target.getAttribute('data-noteid'));
+        deleteRequest.always(() => {
+            loadNotes();
+        });
     }
 
     function onFinishNote(theEvent) {
         let noteId = theEvent.target.getAttribute('data-noteid');
-        let isAlreadyFinished = theEvent.target.getAttribute('data-alreadyfinished');
-        noteModule.finishNote(noteId, (isAlreadyFinished == 'true'));
-        loadNotes();
+        let isAlreadyFinished = (theEvent.target.getAttribute('data-alreadyfinished') == 'true');
+
+        let getRequest = noteModule.loadNote(noteId);
+        getRequest.done((data) => {
+            let note = data.note;
+            note.finishedDate = isAlreadyFinished ? undefined : moment().format('YYYY-MM-DD');
+            let saveRequest = noteModule.saveNote(note);
+            saveRequest.always(() => {
+                loadNotes();
+            });
+        }).fail(() => {
+            loadNotes();
+        });
     }
 
     function loadNotes() {
-        let notes = noteModule.getNotes(settingsModule.isShowFinished());
-        let sortedNotes = sortNotes(notes, settingsModule.getActiveSortOrder());
-        indexView.renderNotes(sortedNotes);
+        let loadRequest = noteModule.loadNotes(settingsModule.isShowFinished());
+        loadRequest.done((data) => {
+            loadedNotes = data.notes;
+            sortAndRenderNotes();
+            indexView.renderNoteCounter(data.noteCounter);
+        }).fail((error) => {
+            alert('Loading request failed: ' + JSON.stringify(error));
+        });
+    }
 
-        let noteCounter = noteModule.getNoteCounter();
-        noteCounter.countDisplaying = sortedNotes.length;
-        indexView.renderNoteCounter(noteCounter);
+    function sortAndRenderNotes() {
+        let sortedNotes = sortNotes(loadedNotes, settingsModule.getActiveSortOrder());
+        indexView.renderNotes(sortedNotes);
     }
 
     function sortNotes(theNotes, theSortOrder) {
@@ -81,18 +101,18 @@
     }
 
     function compareByDueDate(theNote1, theNote2) {
-        return compareByDate(theNote1.dueDate, theNote2.dueDate);
+        return compareByDateString(theNote1.dueDate, theNote2.dueDate);
     }
 
     function compareByCreationDate(theNote1, theNote2) {
-        return compareByDate(theNote1.creationDate, theNote2.creationDate);
+        return compareByDateString(theNote1.creationDate, theNote2.creationDate);
     }
 
     function compareByImportance(theNote1, theNote2) {
-        return - compareByInt(theNote1.importance, theNote2.importance);
+        return - compareByInteger(theNote1.importance, theNote2.importance);
     }
 
-    function compareByDate(theDate1, theDate2) {
+    function compareByDateString(theDate1, theDate2) {
         if (!theDate1 && !theDate2) {
             return 0;
         }
@@ -105,7 +125,7 @@
         return theDate1.localeCompare(theDate2);
     }
 
-    function compareByInt(theInteger1, theInteger2) {
+    function compareByInteger(theInteger1, theInteger2) {
         if (theInteger1 < theInteger2) {
             return -1;
         }

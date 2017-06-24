@@ -1,6 +1,6 @@
 'use strict';
 
-let detailView = (function() {
+const detailView = (function() {
 
     let createNoteModeHtml;
     let createImportanceFieldHtml;
@@ -56,6 +56,13 @@ let detailView = (function() {
         $('#importance-field').html(createImportanceFieldHtml({importanceData: importanceData}));
     }
 
+    function showImmutableFields() {
+        $('#creationdate-label').show();
+        $('#creationdate-field').show();
+        $('#finisheddate-label').show();
+        $('#finisheddate-field').show();
+    }
+
     function hideImmutableFields() {
         $('#creationdate-label').hide();
         $('#creationdate-field').hide();
@@ -63,7 +70,7 @@ let detailView = (function() {
         $('#finisheddate-field').hide();
     }
 
-    function markInvalidFields() {
+    function markInvalidDueDateFields() {
         $('#duedate-field').toggleClass('border--red', true);
         $('#duedate-label').toggleClass('font--red', true);
         $('#duedate-label-invalid').prop('hidden', false);
@@ -78,7 +85,8 @@ let detailView = (function() {
         getImportance,
         setImportance,
         renderImportance,
+        showImmutableFields,
         hideImmutableFields,
-        markInvalidFields
+        markInvalidDueDateFields
     };
 })();

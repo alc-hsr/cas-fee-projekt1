@@ -1,6 +1,6 @@
 'use strict';
 
-let indexView = (function() {
+const indexView = (function() {
 
     let createNoteListHtml;
     let createNoteCounterHtml;

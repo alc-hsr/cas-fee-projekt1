@@ -1,28 +1,32 @@
 'use strict';
 
-let detailController = (function(detailView, noteModule) {
+(function(detailView, noteModule) {
 
-    let currentNote;
+    let currentNote = {};
 
     document.addEventListener('DOMContentLoaded', () => {
-        currentNote = getCurrentNote();
-        if (currentNote.id) {
-            detailView.loadNote(currentNote);
-            detailView.renderSubTitle(true);
-        }
-        else {
-            detailView.hideImmutableFields();
-            detailView.renderSubTitle(false);
-        }
-
-        detailView.renderImportance();
+        renderCurrentNoteState();
+        loadCurrentNote();
 
         $('#savedetail').on('click', onSaveNote);
         $('#canceldetail').on('click', onCancelDetailPage);
         $('#importance-field').on('click', '.importance-star', onImportanceStarClicked);
     });
 
-    function getCurrentNote() {
+    function renderCurrentNoteState() {
+        if (currentNote.id) {
+            detailView.loadNote(currentNote);
+            detailView.showImmutableFields();
+            detailView.renderSubTitle(true);
+        }
+        else {
+            detailView.hideImmutableFields();
+            detailView.renderSubTitle(false);
+        }
+        detailView.renderImportance();
+    }
+
+    function loadCurrentNote() {
         let idParameter;
         if (Modernizr.urlsearchparams) {
             let searchParams = new URLSearchParams(window.location.search);
@@ -51,13 +55,12 @@ let detailController = (function(detailView, noteModule) {
         }
 
         if (noteId) {
-            let note = noteModule.getNote(noteId);
-            if (note) {
-                return note;
-            }
+            let loadRequest = noteModule.loadNote(noteId);
+            loadRequest.done((data) => {
+                currentNote = data.note;
+                renderCurrentNoteState();
+            });
         }
-
-        return new Note();// Fallback: Create a new Note to prepare insertion
     }
 
     function onSaveNote() {
@@ -66,12 +69,14 @@ let detailController = (function(detailView, noteModule) {
         currentNote.importance = detailView.getImportance();
         currentNote.dueDate = detailView.getDueDate();
 
-        if (noteModule.saveNote(currentNote)) {
+        let saveRequest = noteModule.saveNote(currentNote);
+        saveRequest.done(() => {
             window.location.replace('index.html');
-        }
-        else {
-            detailView.markInvalidFields();
-        }
+        }).fail((result) => {
+            if (result.responseText === 'invalid-duedate') {
+                detailView.markInvalidDueDateFields();
+            }
+        });
     }
 
     function onCancelDetailPage() {
