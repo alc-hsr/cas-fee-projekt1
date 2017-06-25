@@ -47,7 +47,7 @@
                         <div>
                             {{#if finishedDate}}
                                 <label><input type="checkbox" class="finishcheckbox" data-noteid="{{_id}}" data-alreadyfinished="true" checked><span class="cursor--pointer">Finished</span></label>
-                                <time class="font--smaller" datetime="{{formatDateHelper finishedDate 'YYYY-MM-DD'}}">(on {{formatDateHelper finishedDate 'DD.MM.YYYY'}})</time>
+                                <time class="font--smaller" datetime="{{formatDateHelper finishedDate 'YYYY-MM-DDTHH:mm:ss'}}">(on {{formatDateHelper finishedDate 'DD.MM.YYYY'}})</time>
                             {{else}}
                                 <label><input type="checkbox" class="finishcheckbox" data-noteid="{{_id}}" data-alreadyfinished="false"><span class="cursor--pointer">Finish</span></label>
                             {{/if}}

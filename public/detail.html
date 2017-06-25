@@ -45,16 +45,12 @@
                     </div>
                 </div>
                 <div class="label-field-pair">
-                    <label class="input-field-label" id="creationdate-label" for="creationdate-field">Creation Date:</label>
-                    <div class="input-field">
-                        <input type="date" id="creationdate-field" disabled>
-                    </div>
+                    <label class="input-field-label" id="creationdate-label" hidden>Creation Date:</label>
+                    <time class="input-field" id="creationdate-field" hidden></time>
                 </div>
                 <div class="label-field-pair">
-                    <label class="input-field-label" id="finisheddate-label" for="finisheddate-field">Finished Date:</label>
-                    <div class="input-field">
-                        <input type="date" id="finisheddate-field" disabled>
-                    </div>
+                    <label class="input-field-label" id="finisheddate-label" hidden>Finished Date:</label>
+                    <time class="input-field" id="finisheddate-field" hidden></time>
                 </div>
             </form>
             <div class="buttonbar-container">
@@ -67,6 +63,7 @@
         <script src="libs/jquery-3.2.1.min.js"></script>
         <script src="libs/moment.js"></script>
         <script src="libs/modernizr-custom.js"></script>
+        <script src="scripts/handlebars.js"></script>
         <script src="scripts/noteService.js"></script>
         <script src="scripts/detailView.js"></script>
         <script src="scripts/detailController.js"></script>

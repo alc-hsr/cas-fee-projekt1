@@ -1,6 +1,6 @@
 'use strict';
 
-const detailView = (function() {
+const detailView = (function(handlebarsModule) {
 
     let createNoteModeHtml;
     let createImportanceFieldHtml;
@@ -11,16 +11,35 @@ const detailView = (function() {
     });
 
     function loadNote(theNote) {
-        $('#title-field').val(theNote.title);
-        $('#description-field').val(theNote.description);
-        $('#importance-field').val(theNote.importance);
-        $('#duedate-field').val(theNote.dueDate);
-        $('#creationdate-field').val(theNote.creationDate);
-        $('#finisheddate-field').val(theNote.finishedDate);
+        if (theNote._id) {
+            renderSubTitle(true);
+
+            $('#title-field').val(theNote.title);
+            $('#description-field').val(theNote.description);
+            $('#duedate-field').val(theNote.dueDate);
+            setImportance(theNote.importance);
+
+            let creationDateField = $('#creationdate-field');
+            creationDateField.html(handlebarsModule.formatDate(theNote.creationDate, 'DD.MM.YYYY / HH:mm:ss'));
+            creationDateField.attr('datetime', handlebarsModule.formatDate(theNote.creationDate, 'YYYY-MM-DDTHH:mm:ss'));
+            creationDateField.prop('hidden', false);
+            $('#creationdate-label').prop('hidden', false);
+
+            if (theNote.finishedDate) {
+                let finishedDateField = $('#finisheddate-field');
+                finishedDateField.html(handlebarsModule.formatDate(theNote.finishedDate, 'DD.MM.YYYY / HH:mm:ss'));
+                finishedDateField.attr('datetime', handlebarsModule.formatDate(theNote.finishedDate, 'YYYY-MM-DDTHH:mm:ss'));
+                finishedDateField.prop('hidden', false);
+                $('#finisheddate-label').prop('hidden', false);
+            }
+        }
+        else {
+            renderSubTitle(false);
+        }
     }
 
     function renderSubTitle(theEditMode) {
-        $('#note-mode').html(createNoteModeHtml({isEditMode: theEditMode}));
+        $('#note-mode').html(createNoteModeHtml({ isEditMode : theEditMode }));
     }
 
     function getTitle() {
@@ -45,6 +64,7 @@ const detailView = (function() {
 
     function setImportance(theImportance) {
         $('#importance-field').val(theImportance);
+        renderImportance();
     }
 
     function renderImportance() {
@@ -53,21 +73,7 @@ const detailView = (function() {
         for (let index = 1; index <= 5; index++) {
             importanceData.push({selected: index <= importance, importance: index});
         }
-        $('#importance-field').html(createImportanceFieldHtml({importanceData: importanceData}));
-    }
-
-    function showImmutableFields() {
-        $('#creationdate-label').show();
-        $('#creationdate-field').show();
-        $('#finisheddate-label').show();
-        $('#finisheddate-field').show();
-    }
-
-    function hideImmutableFields() {
-        $('#creationdate-label').hide();
-        $('#creationdate-field').hide();
-        $('#finisheddate-label').hide();
-        $('#finisheddate-field').hide();
+        $('#importance-field').html(createImportanceFieldHtml({ importanceData : importanceData }));
     }
 
     function markInvalidDueDateFields() {
@@ -78,15 +84,12 @@ const detailView = (function() {
 
     return {
         loadNote,
-        renderSubTitle,
         getTitle,
         getDescription,
         getDueDate,
         getImportance,
         setImportance,
         renderImportance,
-        showImmutableFields,
-        hideImmutableFields,
         markInvalidDueDateFields
     };
-})();
+})(handlebarsModule);

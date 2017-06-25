@@ -5,26 +5,14 @@
     let currentNote = {};
 
     document.addEventListener('DOMContentLoaded', () => {
-        renderCurrentNoteState();
-        loadCurrentNote();
+        detailView.renderImportance();
 
         $('#savedetail').on('click', onSaveNote);
         $('#canceldetail').on('click', onCancelDetailPage);
         $('#importance-field').on('click', '.importance-star', onImportanceStarClicked);
-    });
 
-    function renderCurrentNoteState() {
-        if (currentNote._id) {
-            detailView.loadNote(currentNote);
-            detailView.showImmutableFields();
-            detailView.renderSubTitle(true);
-        }
-        else {
-            detailView.hideImmutableFields();
-            detailView.renderSubTitle(false);
-        }
-        detailView.renderImportance();
-    }
+        loadCurrentNote();
+    });
 
     function loadCurrentNote() {
         let idParameter;
@@ -53,7 +41,7 @@
             let loadRequest = noteModule.loadNote(idParameter);
             loadRequest.done((data) => {
                 currentNote = data.note;
-                renderCurrentNoteState();
+                detailView.loadNote(currentNote);
             });
         }
     }
@@ -85,6 +73,5 @@
             clickedImportance = 0;
         }
         detailView.setImportance(clickedImportance);
-        detailView.renderImportance();
     }
 })(detailView, noteModule);

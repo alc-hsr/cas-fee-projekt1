@@ -53,7 +53,7 @@ function saveNote(theNote, doAfterSave) {
         });
     }
     else {
-        theNote.creationDate = moment().format('YYYY-MM-DD');
+        theNote.creationDate = moment().format('YYYY-MM-DDTHH:mm:ss');
         db.insert(theNote, (err, newDoc) => {
             if (doAfterSave) {
                 doAfterSave(err, newDoc);
@@ -71,7 +71,7 @@ function deleteNote(theNoteId, doAfterDelete) {
 }
 
 function finishNote(theNoteId, doAfterFinish) {
-    db.update({ _id : theNoteId }, { $set : { finishedDate : moment().format('YYYY-MM-DD') } }, {}, (err, numAffected) => {
+    db.update({ _id : theNoteId }, { $set : { finishedDate : moment().format('YYYY-MM-DDTHH:mm:ss') } }, {}, (err, numAffected) => {
         if (doAfterFinish) {
             doAfterFinish(err, numAffected);
         }

@@ -1,6 +1,6 @@
 'use strict';
 
-(function() {
+const handlebarsModule = (function() {
 
     document.addEventListener('DOMContentLoaded', () => {
         /*
@@ -13,22 +13,6 @@
                 resultHtmlText += '<img src="images/important_selected_16.png">';
             }
             return resultHtmlText;
-        });
-
-        /*
-         * 'formatDateHelper' is responsible format the given date with the given format.
-         * If there is no date given, an emtpy text is returned.
-         */
-        Handlebars.registerHelper('formatDateHelper', (theDate, thePattern) => {
-            if (!theDate) {
-                return '';
-            }
-            if (moment) {
-                return moment(theDate).format(thePattern);
-            }
-            else {
-                return theDate;
-            }
         });
 
         /*
@@ -49,5 +33,28 @@
                 return theDate;
             }
         });
+
+
+        /*
+         * 'formatDateHelper' is responsible format the given date with the given format.
+         * If there is no date given, an emtpy text is returned.
+         */
+        Handlebars.registerHelper('formatDateHelper', formatDate);
     });
+
+    function formatDate(theDate, thePattern) {
+        if (!theDate) {
+            return '';
+        }
+        if (moment) {
+            return moment(theDate).format(thePattern);
+        }
+        else {
+            return theDate;
+        }
+    }
+
+    return {
+        formatDate
+    };
 })();
