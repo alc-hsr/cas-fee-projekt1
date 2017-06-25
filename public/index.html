@@ -34,7 +34,7 @@
         <main id="note-list"></main>
         <script id="note-list-template" type="text/x-handlebars-template">
             {{#each this}}
-                <article class="note-container" data-noteid="{{id}}">
+                <article class="note-container" data-noteid="{{_id}}">
                     <div class="note-column-left">
                         <div>
                             {{#if dueDate}}
@@ -46,10 +46,10 @@
                         </div>
                         <div>
                             {{#if finishedDate}}
-                                <label><input type="checkbox" class="finishcheckbox" data-noteid="{{id}}" data-alreadyfinished="true" checked><span class="cursor--pointer">Finished</span></label>
+                                <label><input type="checkbox" class="finishcheckbox" data-noteid="{{_id}}" data-alreadyfinished="true" checked><span class="cursor--pointer">Finished</span></label>
                                 <time class="font--smaller" datetime="{{formatDateHelper finishedDate 'YYYY-MM-DD'}}">(on {{formatDateHelper finishedDate 'DD.MM.YYYY'}})</time>
                             {{else}}
-                                <label><input type="checkbox" class="finishcheckbox" data-noteid="{{id}}" data-alreadyfinished="false"><span class="cursor--pointer">Finish</span></label>
+                                <label><input type="checkbox" class="finishcheckbox" data-noteid="{{_id}}" data-alreadyfinished="false"><span class="cursor--pointer">Finish</span></label>
                             {{/if}}
                         </div>
                     </div>
@@ -58,8 +58,8 @@
                         <p>{{description}}</p>
                     </details>
                     <div class="note-column-right">
-                        <button class="cursor--pointer font--bold editbutton" data-noteid="{{id}}"><img class="button-image" src="images/edit.png" data-noteid="{{id}}">Edit</button>
-                        <button class="cursor--pointer button--red deletebutton" data-noteid="{{id}}"><img class="button-image" src="images/delete.png" data-noteid="{{id}}">Delete</button>
+                        <button class="cursor--pointer font--bold editbutton" data-noteid="{{_id}}"><img class="button-image" src="images/edit.png" data-noteid="{{_id}}">Edit</button>
+                        <button class="cursor--pointer button--red deletebutton" data-noteid="{{_id}}"><img class="button-image" src="images/delete.png" data-noteid="{{_id}}">Delete</button>
                     </div>
                 </article>
             {{else}}

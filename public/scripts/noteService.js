@@ -2,8 +2,12 @@
 
 const noteModule = (function() {
 
-    function loadNotes(theLoadFinished) {
-        return ajaxRequest('GET', 'notes?loadFinishedNotes=' + theLoadFinished);
+    function loadNotes(theLoadFinishedNotes) {
+        return ajaxRequest('GET', 'notes?loadFinishedNotes=' + theLoadFinishedNotes);
+    }
+
+    function countNotes(theLoadFinishedNotes) {
+        return ajaxRequest('GET', 'notes/count?loadFinishedNotes=' + theLoadFinishedNotes);
     }
 
     function loadNote(theNoteId) {
@@ -18,6 +22,14 @@ const noteModule = (function() {
         return ajaxRequest('DELETE', 'notes/' + theNoteId);
     }
 
+    function finishNote(theNoteId) {
+        return ajaxRequest('POST', 'notes/finish/' + theNoteId);
+    }
+
+    function unfinishNote(theNoteId) {
+        return ajaxRequest('POST', 'notes/unfinish/' + theNoteId);
+    }
+
     function ajaxRequest(theMethod, theUrlPath, theData) {
         return $.ajax({
             method: theMethod,
@@ -30,8 +42,11 @@ const noteModule = (function() {
 
     return {
         loadNotes,
+        countNotes,
         loadNote,
         saveNote,
-        deleteNote
+        deleteNote,
+        finishNote,
+        unfinishNote
     };
 })();

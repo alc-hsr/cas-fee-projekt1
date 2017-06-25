@@ -44,10 +44,10 @@ const indexView = (function() {
     }
 
     function markFinishedNotes(theFinishedNotes) {
-        let finishedNoteIds = theFinishedNotes.map(note => note.id);
+        let finishedNoteIds = theFinishedNotes.map(note => note._id);
         let noteContainerElements = [... $('.note-container')];
         noteContainerElements.forEach(noteContainerElement => {
-            let noteId = parseInt(noteContainerElement.getAttribute('data-noteid'));
+            let noteId = noteContainerElement.getAttribute('data-noteid');
             if (finishedNoteIds.includes(noteId)) {
                 noteContainerElement.classList.add('note--finished');
             }

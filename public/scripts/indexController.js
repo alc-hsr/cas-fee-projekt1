@@ -58,18 +58,18 @@
     function onFinishNote(theEvent) {
         let noteId = theEvent.target.getAttribute('data-noteid');
         let isAlreadyFinished = (theEvent.target.getAttribute('data-alreadyfinished') == 'true');
-
-        let getRequest = noteModule.loadNote(noteId);
-        getRequest.done((data) => {
-            let note = data.note;
-            note.finishedDate = isAlreadyFinished ? undefined : moment().format('YYYY-MM-DD');
-            let saveRequest = noteModule.saveNote(note);
-            saveRequest.always(() => {
+        if (isAlreadyFinished) {
+            let unfinishRequest = noteModule.unfinishNote(noteId);
+            unfinishRequest.always(() => {
                 loadNotes();
             });
-        }).fail(() => {
-            loadNotes();
-        });
+        }
+        else {
+            let finishRequest = noteModule.finishNote(noteId);
+            finishRequest.always(() => {
+                loadNotes();
+            });
+        }
     }
 
     function loadNotes() {
@@ -77,9 +77,11 @@
         loadRequest.done((data) => {
             loadedNotes = data.notes;
             sortAndRenderNotes();
+        });
+
+        let countRequest = noteModule.countNotes(settingsModule.isShowFinished());
+        countRequest.done((data) => {
             indexView.renderNoteCounter(data.noteCounter);
-        }).fail((error) => {
-            alert('Loading request failed: ' + JSON.stringify(error));
         });
     }
 

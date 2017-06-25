@@ -3,13 +3,25 @@
 const notes = require('../services/notesStorage');
 
 function getNotes(req, res) {
-    res.json(notes.getNotes(req.query.loadFinishedNotes !== 'false'));
+    let loadFinishedNotes = req.query.loadFinishedNotes !== 'false';
+    notes.getNotes(loadFinishedNotes, (err, notes) => {
+        res.json({ notes : notes || [] });
+    });
+}
+
+function countNotes(req, res) {
+    let loadFinishedNotes = req.query.loadFinishedNotes !== 'false';
+    notes.countNotes(loadFinishedNotes, (err, noteCounter) => {
+        res.json({ noteCounter : noteCounter || [] });
+    });
 }
 
 function getNote(req, res) {
     let noteId = req.params.id;
     if (noteId) {
-        res.json({note: notes.getNote(noteId)});
+        notes.getNote(noteId, (err, note) => {
+            res.json({ note : note });
+        });
     }
     else {
         res.status(400).end();
@@ -19,13 +31,14 @@ function getNote(req, res) {
 function saveNote(req, res) {
     let note = req.body.note;
     if (note) {
-        let errorMessageCode = notes.saveNote(note);
-        if (errorMessageCode) {
-            res.status(400).send(errorMessageCode);
-        }
-        else {
-            res.status(204).end();
-        }
+        notes.saveNote(note, (error) => {
+            if (error) {
+                res.status(400).send(error);
+            }
+            else {
+                res.status(204).end();
+            }
+        });
     }
     else {
         res.status(400).send('No data provided to save');
@@ -35,8 +48,33 @@ function saveNote(req, res) {
 function deleteNote(req, res) {
     let noteId = req.params.id;
     if (noteId) {
-        notes.deleteNote(noteId);
-        res.status(204).end();
+        notes.deleteNote(noteId, () => {
+            res.status(204).end();
+        });
+    }
+    else {
+        res.status(400).end();
+    }
+}
+
+function finishNote(req, res) {
+    let noteId = req.params.id;
+    if (noteId) {
+        notes.finishNote(noteId, () => {
+            res.status(204).end();
+        });
+    }
+    else {
+        res.status(400).end();
+    }
+}
+
+function unfinishNote(req, res) {
+    let noteId = req.params.id;
+    if (noteId) {
+        notes.unfinishNote(noteId, () => {
+            res.status(204).end();
+        });
     }
     else {
         res.status(400).end();
@@ -45,7 +83,10 @@ function deleteNote(req, res) {
 
 module.exports = {
     getNotes,
+    countNotes,
     getNote,
     saveNote,
-    deleteNote
+    deleteNote,
+    finishNote,
+    unfinishNote
 };

@@ -14,7 +14,7 @@
     });
 
     function renderCurrentNoteState() {
-        if (currentNote.id) {
+        if (currentNote._id) {
             detailView.loadNote(currentNote);
             detailView.showImmutableFields();
             detailView.renderSubTitle(true);
@@ -49,13 +49,8 @@
             }
         }
 
-        let noteId;
-        if (idParameter && new RegExp('^[0-9]+$').test(idParameter)) {
-            noteId = parseInt(idParameter);
-        }
-
-        if (noteId) {
-            let loadRequest = noteModule.loadNote(noteId);
+        if (idParameter) {
+            let loadRequest = noteModule.loadNote(idParameter);
             loadRequest.done((data) => {
                 currentNote = data.note;
                 renderCurrentNoteState();
