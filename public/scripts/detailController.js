@@ -52,14 +52,22 @@
         currentNote.importance = detailView.getImportance();
         currentNote.dueDate = detailView.getDueDate();
 
-        let saveRequest = noteModule.saveNote(currentNote);
-        saveRequest.done(() => {
+        saveNote(currentNote).done(() => {
             window.location.replace('index.html');
         }).fail((result) => {
             if (result.responseText === 'invalid-duedate') {
                 detailView.markInvalidDueDateFields();
             }
         });
+    }
+
+    function saveNote(theNote) {
+        if (theNote._id) {
+            return noteModule.updateNote(theNote);
+        }
+        else {
+            return noteModule.insertNote(theNote);
+        }
     }
 
     function onCancelDetailPage() {

@@ -14,8 +14,12 @@ const noteModule = (function() {
         return ajaxRequest('GET', 'notes/' + theNoteId);
     }
 
-    function saveNote(theNote) {
-        return ajaxRequest('POST', 'notes', {note: theNote});
+    function insertNote(theNote) {
+        return ajaxRequest('POST', 'notes', { note : theNote });
+    }
+
+    function updateNote(theNote) {
+        return ajaxRequest('PUT', 'notes', { note : theNote });
     }
 
     function deleteNote(theNoteId) {
@@ -23,20 +27,20 @@ const noteModule = (function() {
     }
 
     function finishNote(theNoteId) {
-        return ajaxRequest('POST', 'notes/finish/' + theNoteId);
+        return ajaxRequest('PUT', 'notes/finish/' + theNoteId);
     }
 
     function unfinishNote(theNoteId) {
-        return ajaxRequest('POST', 'notes/unfinish/' + theNoteId);
+        return ajaxRequest('PUT', 'notes/unfinish/' + theNoteId);
     }
 
     function ajaxRequest(theMethod, theUrlPath, theData) {
         return $.ajax({
-            method: theMethod,
-            url: 'http://localhost:3000/' + theUrlPath,
-            dataType: 'json',
-            contentType: 'application/json',
-            data: JSON.stringify(theData)
+            method : theMethod,
+            url : 'http://localhost:3000/' + theUrlPath,
+            dataType : 'json',
+            contentType : 'application/json',
+            data : JSON.stringify(theData)
         });
     }
 
@@ -44,7 +48,8 @@ const noteModule = (function() {
         loadNotes,
         countNotes,
         loadNote,
-        saveNote,
+        insertNote,
+        updateNote,
         deleteNote,
         finishNote,
         unfinishNote

@@ -5,6 +5,14 @@ const moment = require('moment');
 const Datastore = require('nedb');
 const db = new Datastore({ filename : './data/notes.db', autoload : true });
 
+class NoteCounter {
+    constructor() {
+        this.countAll = 0;
+        this.countFinished = 0;
+        this.countDisplaying = 0;
+    }
+}
+
 function getNotes(theLoadFinishedNotes, doAfterFind) {
     db.find({ $where : function() { return theLoadFinishedNotes || !this.finishedDate } }, (err, notes) => {
         if (doAfterFind) {
@@ -16,10 +24,13 @@ function getNotes(theLoadFinishedNotes, doAfterFind) {
 function countNotes(theLoadFinishedNotes, doAfterCount) {
     db.find({}, (err, notes) => {
         if (doAfterCount) {
-            let countAll = notes.length;
-            let countFinished = notes.filter((note) => note.finishedDate).length;
-            let countDisplaying = theLoadFinishedNotes ? countAll : (countAll - countFinished);
-            doAfterCount(err, { countAll, countFinished, countDisplaying });
+            let noteCounter = new NoteCounter();
+            if (notes) {
+                noteCounter.countAll = notes.length;
+                noteCounter.countFinished = notes.filter((note) => note.finishedDate).length;
+                noteCounter.countDisplaying = theLoadFinishedNotes ? noteCounter.countAll : (noteCounter.countAll - noteCounter.countFinished);
+            }
+            doAfterCount(err, noteCounter);
         }
     });
 }
@@ -32,34 +43,21 @@ function getNote(theNoteId, doAfterFind) {
     });
 }
 
-function saveNote(theNote, doAfterSave) {
-    const INVALID_DUEDATE_ERROR_CODE = 'invalid-duedate';
-    if (theNote.dueDate) {
-        if (!new RegExp('^[0-9][0-9][0-9][0-9]-[0-9][0-9]-[0-9][0-9]$').test(theNote.dueDate)) {
-            doAfterSave(INVALID_DUEDATE_ERROR_CODE, 0);
-            return;
+function insertNote(theNote, doAfterInsert) {
+    theNote.creationDate = moment().format('YYYY-MM-DDTHH:mm:ss');
+    db.insert(theNote, (err, newDoc) => {
+        if (doAfterInsert) {
+            doAfterInsert(err, newDoc);
         }
-        else if (!moment(theNote.dueDate).isValid()) {
-            doAfterSave(INVALID_DUEDATE_ERROR_CODE, 0);
-            return;
-        }
-    }
+    });
+}
 
-    if (theNote._id) {
-        db.update({ _id : theNote._id }, theNote, {}, (err, numAffected) => {
-            if (doAfterSave) {
-                doAfterSave(err, numAffected);
-            }
-        });
-    }
-    else {
-        theNote.creationDate = moment().format('YYYY-MM-DDTHH:mm:ss');
-        db.insert(theNote, (err, newDoc) => {
-            if (doAfterSave) {
-                doAfterSave(err, newDoc);
-            }
-        });
-    }
+function updateNote(theNote, doAfterUpdate) {
+    db.update({ _id : theNote._id }, theNote, {}, (err, numAffected) => {
+        if (doAfterUpdate) {
+            doAfterUpdate(err, numAffected);
+        }
+    });
 }
 
 function deleteNote(theNoteId, doAfterDelete) {
@@ -90,7 +88,8 @@ module.exports = {
     getNotes,
     countNotes,
     getNote,
-    saveNote,
+    insertNote,
+    updateNote,
     deleteNote,
     finishNote,
     unfinishNote
