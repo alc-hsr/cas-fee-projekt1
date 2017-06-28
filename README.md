@@ -21,7 +21,7 @@ node server.js
 
 http://localhost:3000 aufrufen.
 
-##Hinweise
+## Hinweise
 
 Empfohlen wird der Chrome Browser in der aktuellsten Version.
 
