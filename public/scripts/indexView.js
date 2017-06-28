@@ -28,7 +28,7 @@ const indexView = (function() {
     }
 
     function selectShowFinished(theSelected) {
-        $('#filtershowfinished').prop('checked', theSelected);
+        $('#checkbox-show-finished').prop('checked', theSelected);
     }
 
     function getSelectedStyle() {
@@ -40,7 +40,7 @@ const indexView = (function() {
     }
 
     function isShowFinishedSelected() {
-        return $('#filtershowfinished').is(':checked');
+        return $('#checkbox-show-finished').is(':checked');
     }
 
     function markFinishedNotes(theFinishedNotes) {

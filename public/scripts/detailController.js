@@ -7,8 +7,8 @@
     document.addEventListener('DOMContentLoaded', () => {
         detailView.renderImportance();
 
-        $('#savedetail').on('click', onSaveNote);
-        $('#canceldetail').on('click', onCancelDetailPage);
+        $('#button-save').on('click', onSaveNote);
+        $('#button-cancel').on('click', onCancelDetailPage);
         $('#importance-field').on('click', '.importance-star', onImportanceStarClicked);
 
         loadCurrentNote();

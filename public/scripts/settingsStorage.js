@@ -6,6 +6,10 @@ const settingsModule = (function() {
     const ACTIVE_SORT_ORDER_PROPERTY = 'activeSortOrder';
     const SHOW_FINISHED_PROPERTY = 'showFinished';
 
+    const DEFAULT_STYLE = 'author';
+    const DEFAULT_SORT_ORDER = 'sortoption-duedate';
+    const DEFAULT_SHOW_FINISHED = 'true';
+
     function getActiveOrDefault(theKey, theDefaultValue) {
         let value = localStorage.getItem(theKey);
         if (!value) {
@@ -20,7 +24,7 @@ const settingsModule = (function() {
     }
 
     function getActiveStyle() {
-        return getActiveOrDefault(ACTIVE_STYLE_PROPERTY, 'author');
+        return getActiveOrDefault(ACTIVE_STYLE_PROPERTY, DEFAULT_STYLE);
     }
 
     function setActiveSortOrder(theSortOrder) {
@@ -28,7 +32,7 @@ const settingsModule = (function() {
     }
 
     function getActiveSortOrder() {
-        return getActiveOrDefault(ACTIVE_SORT_ORDER_PROPERTY, 'sortByDueDate');
+        return getActiveOrDefault(ACTIVE_SORT_ORDER_PROPERTY, DEFAULT_SORT_ORDER);
     }
 
     function setShowFinished(theShowFinished) {
@@ -36,7 +40,7 @@ const settingsModule = (function() {
     }
 
     function isShowFinished() {
-        return (getActiveOrDefault(SHOW_FINISHED_PROPERTY, true) == 'true');
+        return getActiveOrDefault(SHOW_FINISHED_PROPERTY, DEFAULT_SHOW_FINISHED) === 'true';
     }
 
     return {

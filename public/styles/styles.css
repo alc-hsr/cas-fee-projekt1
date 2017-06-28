@@ -90,7 +90,7 @@ label > input[type="checkbox"] ~ span {
     padding: 0.2em;
 }
 
-#newbutton {
+#button-new {
     flex-direction: row;
 }
 

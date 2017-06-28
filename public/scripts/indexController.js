@@ -10,16 +10,16 @@
         indexView.selectShowFinished(settingsModule.isShowFinished());
 
         $('#styleswitcher').on('change', onStyleChanged);
-        $('#sortByDueDate').on('click', onSortOrderChanged);
-        $('#sortByCreationDate').on('click', onSortOrderChanged);
-        $('#sortByImportance').on('click', onSortOrderChanged);
-        $('#filtershowfinished').on('click', onShowFinishedFilterClicked);
-        $('#newbutton').on('click', onCreateNewNote);
+        $('#sortoption-duedate').on('click', onSortOrderChanged);
+        $('#sortoption-creationdate').on('click', onSortOrderChanged);
+        $('#sortoption-importance').on('click', onSortOrderChanged);
+        $('#checkbox-show-finished').on('click', onShowFinishedFilterClicked);
+        $('#button-new').on('click', onCreateNewNote);
 
         let noteListElement = $('#note-list');
-        noteListElement.on('click', '.editbutton', onShowNoteDetails);
-        noteListElement.on('click', '.deletebutton', onDeleteNote);
-        noteListElement.on('click', '.finishcheckbox', onFinishNote);
+        noteListElement.on('click', '.button-edit', onShowNoteDetails);
+        noteListElement.on('click', '.button-delete', onDeleteNote);
+        noteListElement.on('click', '.checkbox-finish', onFinishNote);
 
         loadNotes();
     });
@@ -57,7 +57,7 @@
 
     function onFinishNote(theEvent) {
         let noteId = theEvent.target.getAttribute('data-noteid');
-        let isAlreadyFinished = (theEvent.target.getAttribute('data-alreadyfinished') == 'true');
+        let isAlreadyFinished = theEvent.target.getAttribute('data-alreadyfinished') === 'true';
         if (isAlreadyFinished) {
             let unfinishRequest = noteModule.unfinishNote(noteId);
             unfinishRequest.always(() => {
@@ -73,13 +73,15 @@
     }
 
     function loadNotes() {
-        let loadRequest = noteModule.loadNotes(settingsModule.isShowFinished());
+        let isShowFinished = settingsModule.isShowFinished();
+
+        let loadRequest = noteModule.loadNotes(isShowFinished);
         loadRequest.done((data) => {
             loadedNotes = data.notes;
             sortAndRenderNotes();
         });
 
-        let countRequest = noteModule.countNotes(settingsModule.isShowFinished());
+        let countRequest = noteModule.countNotes(isShowFinished);
         countRequest.done((data) => {
             indexView.renderNoteCounter(data.noteCounter);
         });
@@ -92,11 +94,11 @@
 
     function sortNotes(theNotes, theSortOrder) {
         switch (theSortOrder) {
-            case 'sortByDueDate':
+            case 'sortoption-duedate':
                 return theNotes.sort(compareByDueDate);
-            case 'sortByCreationDate':
+            case 'sortoption-creationdate':
                 return theNotes.sort(compareByCreationDate);
-            case 'sortByImportance':
+            case 'sortoption-importance':
                 return theNotes.sort(compareByImportance);
         }
         return theNotes;

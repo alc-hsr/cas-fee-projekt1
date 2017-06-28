@@ -49,18 +49,18 @@
 }
 
 .hsr input[type="radio"],
-.hsr #filtershowfinished {
+.hsr #checkbox-show-finished {
     display: none;
 }
 
 .hsr input[type="radio"] ~ span,
-.hsr #filtershowfinished ~ span {
+.hsr #checkbox-show-finished ~ span {
     border: 1px solid rgb(0, 80, 146);
     border-radius: 3px;
 }
 
 .hsr input[type="radio"]:checked ~ span,
-.hsr #filtershowfinished:checked ~ span {
+.hsr #checkbox-show-finished:checked ~ span {
     background: rgb(0, 80, 146);
     color: white;
 }

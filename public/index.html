@@ -16,14 +16,14 @@
             <script id="note-count-template" type="text/x-handlebars-template">Displaying {{countDisplaying}} of {{countAll}} notes ({{countFinished}} notes are finished)</script>
         </header>
         <nav class="toolbar-container">
-            <button class="cursor--pointer font--bold" id="newbutton"><img class="button-image" src="images/new.png">New Note</button>
+            <button class="cursor--pointer font--bold" id="button-new"><img class="button-image" src="images/new.png">New Note</button>
             <div>
                 <label>Sort by:</label>
-                <label><input type="radio" id="sortByDueDate" name="sortorder" value="sortByDueDate"><span class="cursor--pointer">Due date</span></label>
-                <label><input type="radio" id="sortByCreationDate" name="sortorder" value="sortByCreationDate"><span class="cursor--pointer">Creation date</span></label>
-                <label><input type="radio" id="sortByImportance" name="sortorder" value="sortByImportance"><span class="cursor--pointer">Importance</span></label>
+                <label><input type="radio" id="sortoption-duedate" name="sortorder" value="sortoption-duedate"><span class="cursor--pointer">Due date</span></label>
+                <label><input type="radio" id="sortoption-creationdate" name="sortorder" value="sortoption-creationdate"><span class="cursor--pointer">Creation date</span></label>
+                <label><input type="radio" id="sortoption-importance" name="sortorder" value="sortoption-importance"><span class="cursor--pointer">Importance</span></label>
             </div>
-            <label><input type="checkbox" id="filtershowfinished"><span class="cursor--pointer">Show finished</span></label>
+            <label><input type="checkbox" id="checkbox-show-finished"><span class="cursor--pointer">Show finished</span></label>
             <label>Style:
                 <select id="styleswitcher">
                     <option value="author">Author's Style</option>
@@ -46,10 +46,10 @@
                         </div>
                         <div>
                             {{#if finishedDate}}
-                                <label><input type="checkbox" class="finishcheckbox" data-noteid="{{_id}}" data-alreadyfinished="true" checked><span class="cursor--pointer">Finished</span></label>
+                                <label><input type="checkbox" class="checkbox-finish" data-noteid="{{_id}}" data-alreadyfinished="true" checked><span class="cursor--pointer">Finished</span></label>
                                 <time class="font--smaller" datetime="{{formatDateHelper finishedDate 'YYYY-MM-DDTHH:mm:ss'}}">(on {{formatDateHelper finishedDate 'DD.MM.YYYY'}})</time>
                             {{else}}
-                                <label><input type="checkbox" class="finishcheckbox" data-noteid="{{_id}}" data-alreadyfinished="false"><span class="cursor--pointer">Finish</span></label>
+                                <label><input type="checkbox" class="checkbox-finish" data-noteid="{{_id}}" data-alreadyfinished="false"><span class="cursor--pointer">Finish</span></label>
                             {{/if}}
                         </div>
                     </div>
@@ -58,8 +58,8 @@
                         <p>{{description}}</p>
                     </details>
                     <div class="note-column-right">
-                        <button class="cursor--pointer font--bold editbutton" data-noteid="{{_id}}"><img class="button-image" src="images/edit.png" data-noteid="{{_id}}">Edit</button>
-                        <button class="cursor--pointer button--red deletebutton" data-noteid="{{_id}}"><img class="button-image" src="images/delete.png" data-noteid="{{_id}}">Delete</button>
+                        <button class="button-edit cursor--pointer font--bold" data-noteid="{{_id}}"><img class="button-image" src="images/edit.png" data-noteid="{{_id}}">Edit</button>
+                        <button class="button-delete cursor--pointer button--red" data-noteid="{{_id}}"><img class="button-image" src="images/delete.png" data-noteid="{{_id}}">Delete</button>
                     </div>
                 </article>
             {{else}}
