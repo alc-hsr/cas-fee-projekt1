@@ -20,3 +20,13 @@ node server.js
 ### Client starten
 
 http://localhost:3000 aufrufen.
+
+##Hinweise
+
+Empfohlen wird der Chrome Browser in der aktuellsten Version.
+
+Die Daten werden gespeichert in:
+```bash
+/data/notes.db
+```
+Diese Datei wird bei der ersten Verwendung angelegt (Schreibberechtigung wird vorausgesetzt).
