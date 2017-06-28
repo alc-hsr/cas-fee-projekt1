@@ -1,0 +1,102 @@
+/* --------------------------------------- */
+/* Common styles for index and detail page */
+/* --------------------------------------- */
+
+.author body {
+    font-family: Calibri, Helvetica, sans-serif;
+    margin: 1em;
+    background: url('../images/background.png') repeat;
+}
+
+.author header {
+    /* layout */
+    flex-direction: column;
+
+    /* styles */
+    background: linear-gradient(to bottom, #9ae4ff, aliceblue);
+
+    border-top: 2px solid deepskyblue;
+    border-left: 2px solid deepskyblue;
+    border-right: 2px solid deepskyblue;
+
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+
+.author footer {
+    /* layout */
+    justify-content: center;
+
+    /* styles */
+    background: linear-gradient(to top, #9ae4ff, aliceblue);
+
+    border-bottom: 2px solid deepskyblue;
+    border-left: 2px solid deepskyblue;
+    border-right: 2px solid deepskyblue;
+
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+.author button {
+    background: aliceblue;
+    border: 2px solid deepskyblue;
+    border-radius: 10px;
+}
+
+.author .button--red {
+    color: red;
+}
+
+.author button:hover {
+    background: deepskyblue;
+    transition: 1s;
+}
+
+/* ---------------------------------------------------------------------- */
+/* Static part of the index page (title, toolbar for buttons and options) */
+/* ---------------------------------------------------------------------- */
+
+.author .toolbar-container {
+    background: aliceblue;
+
+    border-left: 2px solid deepskyblue;
+    border-right: 2px solid deepskyblue;
+}
+
+.author article {
+    background: white;
+
+    border-bottom: 1px dashed #9ae4ff;
+    border-left: 2px solid deepskyblue;
+    border-right: 2px solid deepskyblue;
+}
+
+.author article:hover {
+    background-color: aliceblue;
+    transition: 0.5s;
+}
+
+.author .note--finished {
+    color: deepskyblue;
+}
+
+/* -------------------------- */
+/* Styles for the detail page */
+/* -------------------------- */
+
+.author form {
+    border-left: 2px solid deepskyblue;
+    border-right: 2px solid deepskyblue;
+}
+
+.author .buttonbar-container {
+    /* layout */
+    justify-content: center;
+
+    /* styles */
+    background: white;
+
+    border-left: 2px solid deepskyblue;
+    border-right: 2px solid deepskyblue;
+}
