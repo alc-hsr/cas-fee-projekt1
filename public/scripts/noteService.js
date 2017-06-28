@@ -19,7 +19,7 @@ const noteModule = (function() {
     }
 
     function updateNote(theNote) {
-        return ajaxRequest('PUT', 'notes', { note : theNote });
+        return ajaxRequest('PUT', 'notes/' + theNote._id, { note : theNote });
     }
 
     function deleteNote(theNoteId) {
@@ -27,11 +27,11 @@ const noteModule = (function() {
     }
 
     function finishNote(theNoteId) {
-        return ajaxRequest('PUT', 'notes/finish/' + theNoteId);
+        return ajaxRequest('PUT', 'notes/'  + theNoteId + '/finish');
     }
 
     function unfinishNote(theNoteId) {
-        return ajaxRequest('PUT', 'notes/unfinish/' + theNoteId);
+        return ajaxRequest('PUT', 'notes/' + theNoteId + '/unfinish');
     }
 
     function ajaxRequest(theMethod, theUrlPath, theData) {
