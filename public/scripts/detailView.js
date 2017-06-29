@@ -90,6 +90,7 @@ const detailView = (function(handlebarsModule) {
         getImportance,
         setImportance,
         renderImportance,
+        renderSubTitle,
         markInvalidDueDateFields
     };
 })(handlebarsModule);

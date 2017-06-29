@@ -5,6 +5,7 @@
     let currentNote = {};
 
     document.addEventListener('DOMContentLoaded', () => {
+        detailView.renderSubTitle(false);
         detailView.renderImportance();
 
         $('#button-save').on('click', onSaveNote);
