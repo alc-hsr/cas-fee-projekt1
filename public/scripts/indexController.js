@@ -2,18 +2,23 @@
 
 (function(indexView, noteModule, settingsModule, styleSwitcherModule) {
 
+    const AUTO_REFRESH_INTERVAL = 5000;
+
     let loadedNotes;
+    let interval;
 
     document.addEventListener('DOMContentLoaded', () => {
         indexView.selectStyle(settingsModule.getActiveStyle());
         indexView.selectSortOrder(settingsModule.getActiveSortOrder());
         indexView.selectShowFinished(settingsModule.isShowFinished());
+        indexView.selectAutoRefresh(settingsModule.isAutoRefresh());
 
         $('#styleswitcher').on('change', onStyleChanged);
         $('#sortoption-duedate').on('click', onSortOrderChanged);
         $('#sortoption-creationdate').on('click', onSortOrderChanged);
         $('#sortoption-importance').on('click', onSortOrderChanged);
-        $('#checkbox-show-finished').on('click', onShowFinishedFilterClicked);
+        $('#checkbox-show-finished').on('click', onToggleShowFinished);
+        $('#checkbox-auto-refresh').on('click', onToggleAutoRefresh);
         $('#button-new').on('click', onCreateNewNote);
 
         let noteListElement = $('#note-list');
@@ -22,6 +27,7 @@
         noteListElement.on('click', '.checkbox-finish', onFinishNote);
 
         loadNotes();
+        onToggleAutoRefresh();
     });
 
     function onStyleChanged() {
@@ -35,9 +41,31 @@
         sortAndRenderNotes();
     }
 
-    function onShowFinishedFilterClicked() {
+    function onToggleShowFinished() {
         settingsModule.setShowFinished(indexView.isShowFinishedSelected());
         loadNotes();
+    }
+
+    function onToggleAutoRefresh() {
+        let isAutoRefresh = indexView.isAutoRefreshSelected();
+        settingsModule.setAutoRefresh(isAutoRefresh);
+
+        if (isAutoRefresh) {
+            activateAutoRefresh();
+        }
+        else {
+            deactivateAutoRefresh();
+        }
+    }
+
+    function activateAutoRefresh() {
+        interval = setInterval(loadNotes, AUTO_REFRESH_INTERVAL);
+    }
+
+    function deactivateAutoRefresh() {
+        if (interval) {
+            clearInterval(interval);
+        }
     }
 
     function onCreateNewNote() {
@@ -77,14 +105,26 @@
 
         let loadRequest = noteModule.loadNotes(isShowFinished);
         loadRequest.done((data) => {
-            loadedNotes = data.notes;
-            sortAndRenderNotes();
+            if (areNotesDifferent(data.notes)) {
+                loadedNotes = data.notes.map(note => Note.of(note));
+                sortAndRenderNotes();
+            }
         });
 
         let countRequest = noteModule.countNotes(isShowFinished);
         countRequest.done((data) => {
             indexView.renderNoteCounter(data.noteCounter);
         });
+    }
+
+    function areNotesDifferent(theNotes) {
+        if (!loadedNotes || !theNotes) {
+            return true;
+        }
+        if (loadedNotes.length !== theNotes.length) {
+            return true;
+        }
+        return !loadedNotes.every(loadedNote => theNotes.find(note => loadedNote.equalsTo(note)));
     }
 
     function sortAndRenderNotes() {

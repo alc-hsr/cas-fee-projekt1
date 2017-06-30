@@ -49,18 +49,21 @@
 }
 
 .hsr input[type="radio"],
-.hsr #checkbox-show-finished {
+.hsr #checkbox-show-finished,
+.hsr #checkbox-auto-refresh {
     display: none;
 }
 
 .hsr input[type="radio"] ~ span,
-.hsr #checkbox-show-finished ~ span {
+.hsr #checkbox-show-finished ~ span,
+.hsr #checkbox-auto-refresh ~ span {
     border: 1px solid rgb(0, 80, 146);
     border-radius: 3px;
 }
 
 .hsr input[type="radio"]:checked ~ span,
-.hsr #checkbox-show-finished:checked ~ span {
+.hsr #checkbox-show-finished:checked ~ span,
+.hsr #checkbox-auto-refresh:checked ~ span {
     background: rgb(0, 80, 146);
     color: white;
 }

@@ -31,6 +31,10 @@ const indexView = (function() {
         $('#checkbox-show-finished').prop('checked', theSelected);
     }
 
+    function selectAutoRefresh(theSelected) {
+        $('#checkbox-auto-refresh').prop('checked', theSelected);
+    }
+
     function getSelectedStyle() {
         return $('#styleswitcher').val();
     }
@@ -41,6 +45,10 @@ const indexView = (function() {
 
     function isShowFinishedSelected() {
         return $('#checkbox-show-finished').is(':checked');
+    }
+
+    function isAutoRefreshSelected() {
+        return $('#checkbox-auto-refresh').is(':checked');
     }
 
     function markFinishedNotes(theFinishedNotes) {
@@ -60,8 +68,10 @@ const indexView = (function() {
         selectStyle,
         selectSortOrder,
         selectShowFinished,
+        selectAutoRefresh,
         getSelectedStyle,
         getSelectedSortOrder,
-        isShowFinishedSelected
+        isShowFinishedSelected,
+        isAutoRefreshSelected
     };
 })();

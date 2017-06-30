@@ -19,11 +19,15 @@
             <button class="cursor--pointer font--bold" id="button-new"><img class="button-image" src="images/new.png">New Note</button>
             <div>
                 <label>Sort by:</label>
-                <label><input type="radio" id="sortoption-duedate" name="sortorder" value="sortoption-duedate"><span class="cursor--pointer">Due date</span></label>
-                <label><input type="radio" id="sortoption-creationdate" name="sortorder" value="sortoption-creationdate"><span class="cursor--pointer">Creation date</span></label>
+                <label><input type="radio" id="sortoption-duedate" name="sortorder" value="sortoption-duedate"><span class="cursor--pointer">Due Date</span></label>
+                <label><input type="radio" id="sortoption-creationdate" name="sortorder" value="sortoption-creationdate"><span class="cursor--pointer">Creation Date</span></label>
                 <label><input type="radio" id="sortoption-importance" name="sortorder" value="sortoption-importance"><span class="cursor--pointer">Importance</span></label>
             </div>
-            <label><input type="checkbox" id="checkbox-show-finished"><span class="cursor--pointer">Show finished</span></label>
+            <div>
+                <label>Options:</label>
+                <label><input type="checkbox" id="checkbox-show-finished"><span class="cursor--pointer">Show Finished</span></label>
+                <label><input type="checkbox" id="checkbox-auto-refresh"><span class="cursor--pointer">Auto Refresh (5s)</span></label>
+            </div>
             <label>Style:
                 <select id="styleswitcher">
                     <option value="author">Author's Style</option>

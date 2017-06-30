@@ -1,5 +1,39 @@
 'use strict';
 
+class Note {
+    constructor() {
+        this._id = undefined;
+        this.title = undefined;
+        this.description = undefined;
+        this.importance = 0;
+        this.creationDate = moment().format('YYYY-MM-DDTHH:mm:ss');
+        this.dueDate = undefined;
+        this.finishedDate = undefined;
+    }
+
+    static of(theNote) {
+        let note = new Note();
+        note.mergeNote(theNote);
+        return note;
+    }
+
+    mergeNote(theNote) {
+        return Object.assign(this, theNote);
+    }
+
+    equalsTo(theNote) {
+        let isEqual = true;
+        isEqual = isEqual && this._id === theNote._id;
+        isEqual = isEqual && this.title === theNote.title;
+        isEqual = isEqual && this.description === theNote.description;
+        isEqual = isEqual && this.importance === theNote.importance;
+        isEqual = isEqual && this.creationDate === theNote.creationDate;
+        isEqual = isEqual && this.dueDate === theNote.dueDate;
+        isEqual = isEqual && this.finishedDate === theNote.finishedDate;
+        return isEqual;
+    }
+}
+
 const noteModule = (function() {
 
     function loadNotes(theLoadFinishedNotes) {
