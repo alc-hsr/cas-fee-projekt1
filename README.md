@@ -1,6 +1,7 @@
 # cas-fee-projekt1
 Eine Applikation zum Verwalten von Notizen im Rahmen des CAS FEE 2017.
 
+
 ## Installation
 
 ```bash
@@ -9,17 +10,19 @@ cd cas-fee-projekt1
 npm install
 ```
 
+
 ## Start
 
-### Web-Server starten
+### 1) Web-Server starten
 
 ```bash
 node server.js
 ```
 
-### Client starten
+### 2) Client starten
 
 http://localhost:3000 aufrufen.
+
 
 ## Hinweise
 

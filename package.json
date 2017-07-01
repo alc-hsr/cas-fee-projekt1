@@ -3,8 +3,16 @@
   "version": "1.0.0",
   "description": "This is the server of the note application.",
   "main": "server.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alc-hsr/cas-fee-projekt1.git"
+  },
   "author": "alc-hsr",
-  "license": "MIT",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/alc-hsr/cas-fee-projekt1/issues"
+  },
+  "homepage": "https://github.com/alc-hsr/cas-fee-projekt1#readme",
   "dependencies": {
     "body-parser": "^1.17.2",
     "express": "^4.15.3",
